@@ -1,4 +1,4 @@
 aricallen.github.io
 ===================
 
-Aric Allen on GitHub
+A better resume.

@@ -1,0 +1,111 @@
+/*
+  styles.css
+ */
+
+/*
+ * global
+ */
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; 
+}
+
+/*
+ * clearfix
+ */
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+ 
+.clearfix {
+  display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+  display: block;
+}
+ 
+* html .clearfix {
+  height: 1%;
+}
+
+/*
+ * structure
+ */
+.container {
+  width: 1000px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container:before,
+.container:after {
+  display: table;
+  content: " ";
+}
+.container:after {
+  clear: both;
+}
+header, footer {
+  max-width: 100%;
+  font-size: 2em;
+  padding: 10px 0px;
+}
+.main-nav {
+  padding: 0;
+}
+.main-nav li {
+  list-style: none;
+  display: inline;
+  padding: 5px;
+  border-right: 1px solid rgb(222,222,222);
+}
+
+.main-nav li:last-child {
+  border-right: none;
+}
+
+.main-nav a {
+  text-decoration: none;
+  padding-right: 5px;
+}
+
+.main-nav a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  padding: 10px;
+  font-size: 1em;
+}
+
+/*/~~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~~/*/
+
+/**
+ * Customer Goes Here
+ */
+
+.header-center {
+	text-align: center;
+}
+
+.header-right {
+	text-align: right;
+}
+
+nav {
+	margin-top: 4%;
+}
+
+
+
+
