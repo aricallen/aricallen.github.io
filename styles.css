@@ -1,111 +1,115 @@
 /*
-  styles.css
- */
-
-/*
- * global
- */
+styles.css
+*/
 
 * {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box; 
+	margin: 0;
+	padding: 0;
 }
 
-/*
- * clearfix
- */
-
-.clearfix:after {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-}
- 
-.clearfix {
-  display: inline-block;
-}
- 
-html[xmlns] .clearfix {
-  display: block;
-}
- 
-* html .clearfix {
-  height: 1%;
+body {
+	font: 16px Helvetica, Sans-Serif;
+	line-height: 24px;
 }
 
-/*
- * structure
- */
-.container {
-  width: 1000px;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-.container:before,
-.container:after {
-  display: table;
-  content: " ";
-}
-.container:after {
-  clear: both;
-}
-header, footer {
-  max-width: 100%;
-  font-size: 2em;
-  padding: 10px 0px;
-}
-.main-nav {
-  padding: 0;
-}
-.main-nav li {
-  list-style: none;
-  display: inline;
-  padding: 5px;
-  border-right: 1px solid rgb(222,222,222);
+.clear {
+	clear: both;
 }
 
-.main-nav li:last-child {
-  border-right: none;
+#page-wrap {
+	width: 800px;
+	margin: 40px auto 60px;
 }
 
-.main-nav a {
-  text-decoration: none;
-  padding-right: 5px;
+#pic {
+	float: right;
+	margin: -30px -30px 0 0;
 }
 
-.main-nav a:hover {
-  text-decoration: underline;
+.circular {
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  background: url(images/me-avatar.jpg) no-repeat;
 }
 
-.content {
-  padding: 10px;
-  font-size: 1em;
+h1 {
+	margin: 0 0 16px 0;
+	padding: 0 0 16px 0;
+	font-size: 42px;
+	font-weight: bold;
+	letter-spacing: -2px;
+	border-bottom: 1px solid #999;
 }
 
-/*/~~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~~/*/
-
-/**
- * Customer Goes Here
- */
-
-.header-center {
-	text-align: center;
+h2 {
+	font-size: 20px;
+	margin: 0 0 6px 0;
+	position: relative;
 }
 
-.header-right {
+h2 span {
+	/*position: absolute;
+	bottom: 0;
+	right: 0;*/
+	font-style: italic;
+	font-family: Georgia, Serif;
+	font-size: 16px;
+	color: #999;
+	font-weight: normal;
+}
+
+p {
+	margin: 0 0 16px 0;
+}
+
+a {
+	color: #999;
+	text-decoration: none;
+	border-bottom: 1px dotted #999;
+}
+
+a:hover {
+	border-bottom-style: solid;
+	color: black;
+}
+
+ul {
+	margin: 0 0 32px 17px;
+}
+
+#objective {
+	width: 500px;
+	float: left;
+}
+
+#objective p {
+	font-family: Georgia, Serif;
+	font-style: italic;
+	color: #666;
+}
+
+dt {
+	font-style: italic;
+	font-weight: bold;
+	font-size: 18px;
 	text-align: right;
+	padding: 0 26px 0 0;
+	width: 150px;
+	float: left;
+	height: 100px;
+	border-right: 1px solid #999;
 }
 
-nav {
-	margin-top: 4%;
+dd {
+	width: 600px;
+	float: right;
 }
 
-
-
-
+dd.clear {
+	float: none;
+	margin: 0;
+	height: 15px;
+}
