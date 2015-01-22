@@ -10,6 +10,7 @@ styles.css
 body {
 	font: 16px Helvetica, Sans-Serif;
 	line-height: 24px;
+	background: url(../img/noise.jpg);
 }
 
 .clear {
@@ -24,15 +25,15 @@ body {
 #pic {
 	float: right;
 	margin: -20px -30px 0 0;
+  	background: url(../img/me-avatar.jpg) no-repeat;
 }
 
 .circular {
-  width: 300px;
-  height: 300px;
-  border-radius: 150px;
-  -webkit-border-radius: 150px;
-  -moz-border-radius: 150px;
-  background: url(images/me-avatar.jpg) no-repeat;
+	width: 300px;
+	height: 300px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
 }
 
 h1 {
