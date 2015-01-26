@@ -13,38 +13,6 @@ body {
 	background: url(../img/noise.jpg);
 }
 
-.clear {
-	clear: both;
-}
-
-#page-wrap {
-	width: 800px;
-	margin: 40px auto 60px;
-}
-
-#pic {
-	float: right;
-	margin: -20px -30px 0 0;
-  	background: url(../img/me-avatar.jpg) no-repeat;
-}
-
-.circular {
-	width: 300px;
-	height: 300px;
-	border-radius: 150px;
-	-webkit-border-radius: 150px;
-	-moz-border-radius: 150px;
-}
-
-h1 {
-	margin: 0 0 16px 0;
-	padding: 0 0 16px 0;
-	font-size: 42px;
-	font-weight: bold;
-	letter-spacing: -2px;
-	border-bottom: 1px solid #999;
-}
-
 h2 {
 	font-size: 20px;
 	margin: 0 0 6px 0;
@@ -52,9 +20,6 @@ h2 {
 }
 
 h2 span {
-	/*position: absolute;
-	bottom: 0;
-	right: 0;*/
 	font-style: italic;
 	font-family: Georgia, Serif;
 	font-size: 16px;
@@ -81,16 +46,6 @@ ul {
 	margin: 0 0 32px 17px;
 }
 
-#objective {
-	width: 500px;
-	float: left;
-}
-
-#objective p {
-	font-family: Georgia, Serif;
-	font-style: italic;
-	color: #666;
-}
 
 dt {
 	font-style: italic;
@@ -114,3 +69,112 @@ dd.clear {
 	margin: 0;
 	height: 15px;
 }
+
+#page-wrap {
+	width: 800px;
+	margin: 40px auto 60px;
+}
+
+#avatar {
+	float: right;
+	margin: -20px -30px 0 0;
+  	background: url(../img/me-avatar.jpg) no-repeat;
+}
+
+#full-name {
+	margin: 0 0 16px 0;
+	padding: 0 0 16px 0;
+	font-size: 42px;
+	font-weight: bold;
+	letter-spacing: -2px;
+	border-bottom: 1px solid #999;
+}
+
+#objective {
+	float: left;
+}
+
+#objective p {
+	font-family: Georgia, Serif;
+	font-style: italic;
+	color: #666;
+}
+
+.clear {
+	clear: both;
+}
+
+.circular {
+	width: 300px;
+	height: 300px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+}
+
+/*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
+
+/**
+ * Mobile Queries
+ */
+
+@media ( max-width: 912px ) {
+  #page-wrap {
+  	width: 90%;
+  	padding: 0 20px;
+  }
+
+  #avatar {
+    float: none;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  #full-name {
+		float: none;	
+		text-align: center;
+}
+
+	.info-section-title {
+		float: left;
+		height: auto;
+		border: none;	
+		margin: 10px 0;
+		width: auto;
+		font-size: 18pt;
+		text-decoration: underline;
+	}
+
+	.info-item {
+		width: 100%;
+		float: left;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
