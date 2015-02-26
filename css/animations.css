@@ -1,0 +1,199 @@
+/***********************************
+ * custom animations
+ ***********************************/
+
+/**
+ * set duration and fill of element
+ */
+
+ .animate {
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.animate-short {
+  -webkit-animation-duration: .5s;
+          animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+.animate-long {
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+/*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
+
+/**
+ * menu-slide-down
+ */
+
+@-webkit-keyframes menuSlidesDown {
+  0% {
+    -webkit-transform: translateY(-200px);
+            transform: translateY(-200px);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+.menuSlidesDown {
+  -webkit-animation-name: menuSlidesDown;
+          animation-name: menuSlidesDown;
+}
+
+/*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
+
+/**
+ * menu-slide-up
+ */
+
+@-webkit-keyframes menuSlidesUp {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateY(-200px);
+            transform: translateY(-200px);
+  }
+}
+
+.menuSlidesUp {
+  -webkit-animation-name: menuSlidesUp;
+          animation-name: menuSlidesUp;
+}
+
+/*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
+
+/**
+ * show-menu
+ */
+
+@-webkit-keyframes menuSlidesLeft {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+
+.menuSlidesLeft {
+  -webkit-animation-name: menuSlidesLeft;
+          animation-name: menuSlidesLeft;
+}
+
+/*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
+
+/**
+ * hide-menu
+ */
+
+@-webkit-keyframes menuSlidesRight {
+  0% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+.menuSlidesRight {
+  -webkit-animation-name: menuSlidesRight;
+          animation-name: menuSlidesRight;
+}
+
+/*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
+
+/**
+ * menu-hidden
+ */
+
+/* percentage based on width of menu */
+
+@-webkit-keyframes pageSlidesLeft {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateX(-60%);
+            transform: translateX(-60%);
+  }
+}
+
+.pageSlidesLeft {
+  -webkit-animation-name: pageSlidesLeft;
+          animation-name: pageSlidesLeft;
+}
+
+/*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
+
+/**
+ * menu-shown
+ */
+
+/* percentage based on width of menu */
+
+@-webkit-keyframes pageSlidesRight {
+  0% {
+    -webkit-transform: translateX(-60%);
+            transform: translateX(-60%);
+    visibility: visible;
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+.pageSlidesRight {
+  -webkit-animation-name: pageSlidesRight;
+          animation-name: pageSlidesRight;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
