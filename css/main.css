@@ -120,6 +120,8 @@ html[xmlns] .clearfix {
 #menu {
   position: absolute;
   width: 60%;
+  /*fix later*/
+  /*max-width: 400px;*/
   height: 100%;
   background: #37b0e9;
   top: 0;
@@ -333,6 +335,11 @@ footer {
   /* transform: translateY(-55%); */
 }
 
+#landing-container {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
 #animated-text {
   text-align: left;
   max-width: 40%;
@@ -516,6 +523,17 @@ img.project-img {
   color: #37b0e9;
 }
 
+/***********************************
+ * desktop styles
+ ***********************************/
+
+@media (min-width: 800px) {
+
+  #menu {
+    background-color: white;
+  }
+
+}
 
 
 
