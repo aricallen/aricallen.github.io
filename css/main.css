@@ -530,7 +530,8 @@ img.project-img {
 @media (min-width: 800px) {
 
   #menu {
-    background-color: white;
+    /*width: 30%;*/
+    /* add animations for desktop sizes */
   }
 
 }
