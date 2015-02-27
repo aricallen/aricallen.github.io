@@ -51,11 +51,11 @@ ul {
 .show {
   display: inherit;
 }
-.link {
+.link, .nav-link {
   text-decoration: none;
   color: inherit;
 }
-.link:visited {
+.link:visited, .nav-link:visited {
   color: inherit;
 }
 .link:hover {
@@ -341,8 +341,8 @@ footer {
 }
 
 #animated-text {
-  text-align: left;
-  max-width: 40%;
+  /* text-align: left; */
+  max-width: 50%;
   margin: auto;
   padding: 10px;
 }

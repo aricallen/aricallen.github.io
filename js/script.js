@@ -19,7 +19,8 @@ function documentReady() {
 	}
 }
 
-function toggleMenu() {
+function toggleMenu(e) {
+	var evID = e.target.id;
 	console.log("toggleMenu");
 	var menu = document.getElementById('menu');
 	var thePage = document.getElementById('page');
@@ -32,7 +33,7 @@ function toggleMenu() {
 	// 	// page off screen
 	// 	// add click event
 	// 	eventUtility.addEvent(thePage, 'click', toggleMenu);
-	// } else {
+	// } else if ( hasClass(thePage, 'pageSlidesRight') ) {
 	// 	// page on screen
 	// 	// remove click event
 	// 	eventUtility.removeEvent(thePage, 'click', toggleMenu);
