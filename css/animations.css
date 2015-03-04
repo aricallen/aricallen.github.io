@@ -30,55 +30,7 @@
 /*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
 
 /**
- * menu-slide-down
- */
-
-@-webkit-keyframes menuSlidesDown {
-  0% {
-    -webkit-transform: translateY(-200px);
-            transform: translateY(-200px);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-  }
-}
-
-.menuSlidesDown {
-  -webkit-animation-name: menuSlidesDown;
-          animation-name: menuSlidesDown;
-}
-
-/*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
-
-/**
- * menu-slide-up
- */
-
-@-webkit-keyframes menuSlidesUp {
-  0% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translateY(-200px);
-            transform: translateY(-200px);
-  }
-}
-
-.menuSlidesUp {
-  -webkit-animation-name: menuSlidesUp;
-          animation-name: menuSlidesUp;
-}
-
-/*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
-
-/**
- * show-menu
+ * menuSlidesLeft
  */
 
 @-webkit-keyframes menuSlidesLeft {
@@ -102,7 +54,7 @@
 /*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
 
 /**
- * hide-menu
+ * menuSlidesRight
  */
 
 @-webkit-keyframes menuSlidesRight {
@@ -126,7 +78,7 @@
 /*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
 
 /**
- * menu-hidden
+ * pageSlidesLeft
  */
 
 /* percentage based on width of menu */
@@ -152,7 +104,7 @@
 /*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
 
 /**
- * menu-shown
+ * pageSlidesRight
  */
 
 /* percentage based on width of menu */
