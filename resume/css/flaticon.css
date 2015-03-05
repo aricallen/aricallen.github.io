@@ -1,0 +1,76 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("flaticon.eot");
+	src: url("flaticon.eot#iefix") format("embedded-opentype"),
+	url("flaticon.woff") format("woff"),
+	url("flaticon.ttf") format("truetype"),
+	url("flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+	font-size: 18px;
+	font-style: normal;
+}
+
+.flaticon-add73:before {
+	content: "\e000";
+}
+
+.flaticon-circle90:before {
+	content: "\e001";
+}
+
+.flaticon-concentric2:before {
+	content: "\e002";
+}
+
+.flaticon-email15:before {
+	content: "\e003";
+}
+
+.flaticon-email6:before {
+	content: "\e004";
+}
+
+.flaticon-flatscreen:before {
+	content: "\e005";
+}
+
+.flaticon-light33:before {
+	content: "\e006";
+}
+
+.flaticon-mail:before {
+	content: "\e007";
+}
+
+.flaticon-mobile41:before {
+	content: "\e008";
+}
+
+.flaticon-plus25:before {
+	content: "\e009";
+}
+
+.flaticon-plus32:before {
+	content: "\e00a";
+}
+
+.flaticon-plus55:before {
+	content: "\e00b";
+}
+
+.flaticon-plus79:before {
+	content: "\e00c";
+}
+
+.flaticon-record8:before {
+	content: "\e00d";
+}
+
+.flaticon-telephone14:before {
+	content: "\e00e";
+}

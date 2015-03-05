@@ -1,0 +1,426 @@
+/*
+  style.css
+  grey: #47494A; 
+  blue: #00AEEF;
+  white: #ffffff;
+*/
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; 
+}
+
+body {
+  background-color: #CCCCCC;
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.clearfix {
+  display: inline-block;
+}
+
+html[xmlns] .clearfix {
+  display: block;
+}
+
+* html .clearfix {
+  height: 1%;
+}
+
+/*
+ * structure / globals
+ */
+
+.page-container {
+  width: 816px;
+  padding: 40px 60px;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid grey;
+  background-color: #FFFFFF;
+  position: relative;
+}
+
+.page-container:before, .page-container:after {
+  display: table;
+  content: " ";
+}
+
+.page-container:after {
+  clear: both;
+}
+
+.top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 28px;
+  width: 100%;
+  background-color: #47494A;
+}
+
+.top-bar-stripe {
+  position: absolute;
+  height: 35px;
+  width: 10px;
+  top: 0;
+  left: 35px;
+  background-color: #FFFFFF;
+  z-index: 1;
+}
+
+.bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 10px;
+  width: 100%;
+  background-color: #47494A;
+}
+
+.caps {
+  text-transform: uppercase;
+}
+
+.left-column {
+  float: left;
+  clear: left;
+  width: 55%;
+}
+
+.right-column {
+  float: right;
+  clear: right;
+  width: 40%;
+}
+
+/*/~~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~~/*/
+
+/* header / main section */
+
+header {
+  padding-left: 40px;
+  margin-bottom: 40px;
+}
+
+header .name {
+  font-size: 3em;
+  font-style: normal;
+  font-weight: 900;
+}
+
+header .title {
+  font-size: 1.5em;
+  font-style: normal;
+  font-weight: 400;
+  color: #47494A;
+}
+
+section.name-and-title {
+  float: left;
+  width: 60%;
+}
+
+/* contact info section */
+
+section.contact {
+  float: right;
+  width: 40%;
+  padding-left: 40px;
+}
+
+section.contact > div {
+  border-bottom: 1px dashed black;
+}
+
+section.contact .headline {
+  font-size: 1em;
+  font-weight: 400;
+  border-bottom: 1px solid black;
+}
+
+section.contact .section {
+  position: relative;
+  padding: 4px 0px;
+}
+
+section.contact .contact-icon {
+  position: absolute;
+  left: -47px;
+  color: #47494A;
+}
+
+.website-icon {
+  top: 7px;
+}
+
+.mobile-icon {
+  top: 9px;
+}
+
+.email-icon {
+  top: 5px;
+}
+
+.contact-icon:before, .contact-icon:after {
+  font-size: 32px;
+}
+
+section.contact .title {
+  font-size: 1em;
+  font-style: normal;
+  font-weight: 700;
+}
+
+section.contact .info {
+  font-size: 1.1em;
+  font-weight: 400;
+}
+
+/* employment section */
+
+.content-section-header {
+  position: relative;
+  margin-left: 40px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+  font-weight: 400;
+}
+
+.content-header-icon {
+  position: absolute;
+  top: 1px;
+  left: -24px;
+  color: #47494A;
+}
+
+.content-header-title {
+  font-size: 13pt;
+  line-height: 17pt;
+  width: 100%;
+  /* margin-bottom: 0px; */
+}
+
+section.employment {
+  position: relative;
+}
+
+section.employment .employment-year {
+  position: absolute;
+  left: -80px;
+  vertical-align: middle;
+  font-size: .9em;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  filter: progid: DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+section.employment .has-text {
+  position: absolute;
+  left: -90px;
+}
+
+.gutter, .bottom-gutter {
+  position: absolute;
+  left: 24px;
+  top: 23px;
+  height: 95%;
+  width: 1px;
+  background-color: black;
+}
+
+section.employment ul, section.education ul {
+  list-style-type: none;
+}
+
+section.employment li, section.education li {
+  margin-bottom: 10px;
+}
+
+section.employment .section {
+  position: relative;
+}
+
+.employment-icon, .education-icon {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 5px;
+  left: -20.5px;
+  background-image: url(../img/circle2-blue.png);
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  background-position: 0px 0px;
+}
+
+.employment-icon:before, .employment-icon:after {
+  font-size: 8pt;
+}
+
+section.employment .company {
+  font-style: normal;
+  font-weight: 900;
+  color: #47494A;
+}
+
+section.employment .title {
+  font-weight: 700;
+}
+
+section.employment .title:before {
+  content: " -- ";
+}
+
+section.employment .blurb {
+  font-size: 0.9em;
+}
+
+/* education */
+
+section.education {
+  width: 100%;
+  position: relative;
+}
+
+.bottom-gutter {
+  position: absolute;
+  left: 24px;
+  top: 50px;
+  height: 50%;
+  width: 1px;
+  background-color: black;
+}
+
+.education-info-left {
+  float: left;
+  width: 30%;
+}
+
+.education-info-right {
+  float: left;
+  width: 70%;
+}
+
+section.education li {
+  position: relative;
+}
+
+section.education .degree {
+  font-weight: 700;
+  color: #47494A;
+}
+
+section.education .major {
+  font-weight: 700;
+}
+
+section.education .school {
+  font-weight: 400;
+}
+
+/* professional skills */
+
+.skill {
+  margin-left: 40px;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+.skill-level {
+  float: right;
+}
+
+.level-dot {
+  width: 12px;
+  height: 12px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.level-dot.non-filled {
+  opacity: 0.4;
+}
+
+.development-subtext {
+  margin: 5px 40px;
+  font-size: 0.8em;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.js-skills {
+  padding-left: 10px;
+}
+
+/* professional highlights */
+
+section.professional {
+  margin-top: 20px;
+}
+
+section.professional .blurb {
+  font-size: 0.8em;
+}
+
+section.professional ul {
+  list-style: none;
+}
+
+section.professional ul li {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.professional-icon {
+  position: absolute;
+  top: -1px;
+  left: -20px;
+}
+
+.professional-icon:before, .professional-icon:after {
+  font-size: 8pt;
+  color: #00AEEF;
+}
+
+/**
+ * Print Styles
+ */
+
+/*@media print {
+  .gutter, .bottom-gutter {
+    position: absolute;
+    left: 24px;
+    top: 23px;
+    height: 95%;
+    width: 1px;
+    background-color: black;
+  }
+
+  .bottom-gutter {
+    position: absolute;
+    left: 24px;
+    top: 50px;
+    height: 50%;
+    width: 1px;
+    background-color: black;
+  }
+}*/
