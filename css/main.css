@@ -189,15 +189,19 @@ html[xmlns] .clearfix {
 }
 
 #page .chevron-left {
-  top: 46%;
+  top: 40%;
   left: 0;
   max-width: 4%;
+  width: 40px;
+  text-align: center;
 }
 
 #page .chevron-right {
-  top: 46%;
+  top: 40%;
   right: 0;
   max-width: 4%;
+  width: 40px;
+  text-align: center;
 }
 
 /***********************************
@@ -432,6 +436,11 @@ footer {
   border-bottom: 1px solid black;
 }
 
+#skills-page.content-container {
+  top: 25%;
+  position: relative;
+}
+
 .rank {
   display: inline-block;
   width: 32%;
@@ -536,7 +545,98 @@ img.project-img {
 
 }
 
+/*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
 
+/**
+ * Mobile Hacks
+ */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 3)
+  { 
+  
+  #skills-page.content-container {
+    position: relative;
+    top: 10%;
+  }
+
+  #skills-page .content-header-title {
+    font-size: 16pt;
+    /*font-size: ;*/
+  }
+
+  #skills-page .title {
+    font-size: 14pt;
+  }
+
+  #skills-page .skill {
+    font-size: 14pt;
+  }
+
+  #non-dev-skills .skill {
+    font-size: 10pt;
+  }
+
+  #non-dev-skills .level-dot {
+    top: 2px;
+  }
+
+  /**
+   * navigation arrows
+   */
+
+  #page .nav-arrow {
+    position: fixed;
+    right: 47.5%;
+    z-index: 1;
+  }
+
+  #page .nav-arrow:hover {
+    background-color: #37b0e9;
+  }
+
+  #page .chevron-up {
+    display: none;
+  }
+
+  #page .chevron-down {
+    display: none;
+  }
+
+  #page .chevron-left {
+    top: 40%;
+    left: 0;
+    max-width: 4%;
+    width: 20px;
+    text-align: center;
+  }
+
+  #page .chevron-right {
+    top: 40%;
+    right: 4px;
+    max-width: 4%;
+    width: 20px;
+    text-align: center;
+  }
+
+  /*/~~~~~~~~~~~~~////~~~~~~~~~~~~~~////~~~~~~~~~~~~~/*/
+
+  /**
+   * contact
+   */
+  #contact-page .content-header-title {
+    font-size: 16pt;
+  }
+  
+  .social-item {
+    width: 20%;
+  }
+
+  .social-item i {
+    font-size: 1.5em;
+  }
+}
 
 
 
