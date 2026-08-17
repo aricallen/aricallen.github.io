@@ -1,0 +1,181 @@
+{
+  "profile": {
+    "name": "Aric Allen",
+    "monogram": "aa.",
+    "roles": ["Staff Software Engineer", "Frontend Specialist", "Musician", "Serial Optimist"],
+    "location": "Oakland, California",
+    "headline": "I build interfaces people love to use — and codebases people love to work in.",
+    "bio": "Staff frontend engineer with 10+ years of shipping polished, accessible web apps — AI agent workspaces and MCP apps at dbt Labs, design systems and ads tooling at Reddit, developer platforms at Sysdig and Apple. Berklee-trained musician who brings the same ear for craft to the codebase.",
+    "quote": "Be the change you want to see in the codebase.",
+    "avatar": "avatar.svg",
+    "resumeUrl": "#",
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/aricallen", "icon": "github" },
+      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/aricallen2/", "icon": "linkedin" },
+      { "label": "Email", "url": "mailto:aric.allen2@gmail.com", "icon": "mail" }
+    ]
+  },
+  "stats": [
+    { "value": 10, "suffix": "+", "label": "years of frontend engineering" },
+    { "value": 650, "suffix": "+", "label": "PRs merged in 18 months at Reddit" },
+    { "value": 54, "suffix": "%", "label": "React render time cut via Compiler migration" },
+    { "value": 17, "suffix": "", "label": "repos contributed to across the stack" }
+  ],
+  "skills": {
+    "expert": ["TypeScript", "React", "Node.js", "CSS", "Tailwind", "Vite", "Express", "Cypress", "React Testing Library"],
+    "experienced": ["Next.js", "MCP", "PostgreSQL", "GraphQL", "Kubernetes", "Docker", "Electron", "Figma", "Python", "shadcn/ui", "Vitest"],
+    "learning": ["Go", "Rust", "Machine Learning"]
+  },
+  "projects": [
+    {
+      "id": "mcp-apps",
+      "title": "MCP Apps to GA",
+      "org": "dbt Labs",
+      "period": "2025 — 2026",
+      "hue": 262,
+      "image": "projects/mcp-apps.svg",
+      "summary": "Interactive MCP apps rendered inside AI hosts — from RFC to general availability.",
+      "highlights": [
+        "Authored the RFC and led the initiative from prototype to GA",
+        "Shipped custom UI embedded in dbt, VS Code, and Claude Desktop",
+        "Defined the rendering contract between MCP servers and host UIs"
+      ],
+      "details": {
+        "overview": "MCP Apps let servers ship rich, interactive UI that renders directly inside AI hosts. I authored the internal RFC, aligned host teams across three surfaces, and led the work from a hackweek prototype to a GA product — designing the protocol layer for how apps declare, sandbox, and render their UI.",
+        "role": "Tech lead — RFC author, protocol design, frontend implementation across three host surfaces.",
+        "stack": ["TypeScript", "React", "MCP", "Vite", "Electron"],
+        "outcomes": [
+          "GA launch across dbt, VS Code, and Claude Desktop",
+          "Rendering contract adopted as the standard for internal MCP app development",
+          "Unblocked downstream teams to ship their own MCP apps without host changes"
+        ],
+        "links": []
+      }
+    },
+    {
+      "id": "insights-agent",
+      "title": "Insights Analysis Agent",
+      "org": "dbt Labs",
+      "period": "2024 — 2025",
+      "hue": 305,
+      "image": "projects/insights-agent.svg",
+      "summary": "An AI data analyst with streaming responses, tool calling, and live SQL execution.",
+      "highlights": [
+        "Shipped dbt's Insights analysis agent to GA",
+        "Built streaming UI with incremental tool-call rendering",
+        "Live SQL execution with result visualization in the chat surface"
+      ],
+      "details": {
+        "overview": "Insights is dbt's conversational analysis agent: ask a question in plain English, watch it plan, write SQL, run it against your warehouse, and chart the results — all streamed token-by-token into a purpose-built chat surface. I owned the frontend: the streaming architecture, incremental rendering of tool calls, and the embedded result visualizations.",
+        "role": "Frontend lead — streaming architecture, tool-call UI, result rendering.",
+        "stack": ["TypeScript", "React", "SSE streaming", "SQL", "Recharts"],
+        "outcomes": [
+          "GA launch as a flagship AI feature of the dbt platform",
+          "Streaming patterns reused by two other agent surfaces",
+          "Sub-second first-token render on warehouse-scale queries"
+        ],
+        "links": []
+      }
+    },
+    {
+      "id": "dev-agent-workspace",
+      "title": "Dev-Agent Workspace",
+      "org": "dbt Labs",
+      "period": "2025 — 2026",
+      "hue": 195,
+      "image": "projects/dev-agent-workspace.svg",
+      "summary": "A full-screen workspace for reviewing AI code edits — inline diffs and DAG-level impact review.",
+      "highlights": [
+        "Frontend lead for the dev-agent workspace",
+        "Inline diff review of AI-proposed edits across many files",
+        "DAG visualization showing downstream impact of every change"
+      ],
+      "details": {
+        "overview": "When an AI agent edits your dbt project, you need to trust the change before you ship it. This workspace gives engineers a full-screen review surface: file-by-file inline diffs of agent edits, plus a DAG view showing which downstream models each change touches — so review happens at both the code level and the dependency level.",
+        "role": "Frontend lead — workspace shell, diff rendering, DAG review integration.",
+        "stack": ["TypeScript", "React", "CodeMirror", "dagre", "Tailwind"],
+        "outcomes": [
+          "Became the primary review surface for agent-driven edits",
+          "Diff + DAG dual review reduced bad merges from agent changes",
+          "Workspace shell reused for two additional editor features"
+        ],
+        "links": []
+      }
+    },
+    {
+      "id": "react-19-migration",
+      "title": "React 19 + Compiler Migration",
+      "org": "dbt Labs",
+      "period": "2024 — 2025",
+      "hue": 155,
+      "image": "projects/react-19-migration.svg",
+      "summary": "Led the React 19 + Compiler migration across six repos, cutting render time by ~54%.",
+      "highlights": [
+        "React rendering time cut by ~54% across the platform",
+        "Unified five frontend apps into one monorepo",
+        "CDN-split the editor core to fix chronic CI failures"
+      ],
+      "details": {
+        "overview": "A platform-wide modernization: migrate six repositories to React 19 with the React Compiler enabled, then consolidate five frontend apps into a single monorepo. Along the way I CDN-split the heavyweight editor core out of the main bundle, which eliminated a class of chronic CI failures and sped up every team's pipeline.",
+        "role": "Migration lead — planning, codemods, rollout sequencing, performance measurement.",
+        "stack": ["React 19", "React Compiler", "Turborepo", "Vite", "GitHub Actions"],
+        "outcomes": [
+          "~54% reduction in React rendering time measured across key surfaces",
+          "Five apps consolidated into one monorepo with shared tooling",
+          "Chronic editor-related CI failures eliminated via CDN split"
+        ],
+        "links": []
+      }
+    },
+    {
+      "id": "design-tokens",
+      "title": "Design Token Pipeline",
+      "org": "Reddit",
+      "period": "2022 — 2023",
+      "hue": 45,
+      "image": "projects/design-tokens.svg",
+      "summary": "Figma-to-npm design token pipeline powering dark mode, theming, and a brand refresh across six repos.",
+      "highlights": [
+        "Lead architect for the Figma → npm token pipeline",
+        "Enabled seamless dark mode and theming rollout",
+        "Brand refresh shipped across six repositories from one source of truth"
+      ],
+      "details": {
+        "overview": "Design tokens lived in Figma; the six ads repos each hardcoded their own colors. I architected a pipeline that syncs tokens from Figma into a versioned npm package — typed, themeable, and consumed everywhere. When the brand refresh and dark mode landed, they rolled out across all six repos by bumping a dependency.",
+        "role": "Lead architect — pipeline design, token schema, rollout across consuming teams.",
+        "stack": ["TypeScript", "Figma API", "Style Dictionary", "npm", "CSS variables"],
+        "outcomes": [
+          "Dark mode + brand refresh rolled out across six repositories",
+          "Single source of truth replaced per-repo hardcoded palettes",
+          "Adopted by the Frontend Guild as the standard theming path"
+        ],
+        "links": []
+      }
+    },
+    {
+      "id": "ad-search",
+      "title": "Ads Search Platform",
+      "org": "Reddit",
+      "period": "2022 — 2023",
+      "hue": 345,
+      "image": "projects/ad-search.svg",
+      "summary": "Internal search platform for cross-team discovery and action on ad data.",
+      "highlights": [
+        "Built the internal ad search platform end to end",
+        "Collapsed a 15+ shared-package dev loop into a single step",
+        "Scaled ad review microservices for new ad products"
+      ],
+      "details": {
+        "overview": "Ads data was scattered across systems with no unified way to find or act on it. I built an internal search platform that let any team discover ads, inspect their state, and take action — plus the local-dev tooling that collapsed a painful 15+ shared-package development loop into a single command.",
+        "role": "Full-stack engineer — search UI, API gateway integration, DX tooling.",
+        "stack": ["TypeScript", "React", "GraphQL", "Node.js", "Kubernetes"],
+        "outcomes": [
+          "Cross-team ad discovery in one place, replacing tribal knowledge",
+          "Local-dev loop for shared packages reduced to a single step",
+          "Ad review services scaled to support new ad product launches"
+        ],
+        "links": []
+      }
+    }
+  ]
+}

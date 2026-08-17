@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aric Allen — Staff Software Engineer in Oakland, CA. 10+ years building polished, accessible frontends: AI agent workspaces, MCP apps, and design systems."
+    />
+    <meta name="theme-color" content="#14161f" />
+    <title>Aric Allen — Staff Software Engineer</title>
+    <script>
+      const stored = localStorage.getItem('theme')
+      const theme =
+        stored === 'light' || stored === 'dark'
+          ? stored
+          : matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+      document.documentElement.classList.toggle('dark', theme === 'dark')
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
