@@ -2,10 +2,10 @@
   "profile": {
     "name": "Aric Allen",
     "monogram": "aa.",
-    "roles": ["Staff Software Engineer", "Frontend Specialist", "Musician", "Serial Optimist"],
+    "roles": ["Senior Software Engineer II", "Frontend Specialist", "Musician", "Serial Optimist"],
     "location": "Oakland, California",
     "headline": "I build interfaces people love to use — and codebases people love to work in.",
-    "bio": "Staff frontend engineer with 10+ years of shipping polished, accessible web apps — AI agent workspaces and MCP apps at dbt Labs, design systems and ads tooling at Reddit, developer platforms at Sysdig and Apple. Berklee-trained musician who brings the same ear for craft to the codebase.",
+    "bio": "Senior frontend engineer with 10+ years of shipping polished, accessible web apps — AI agent workspaces and MCP apps at dbt Labs, design systems and ads tooling at Reddit, developer platforms at Sysdig and Apple. Berklee-trained musician who brings the same ear for craft to the codebase.",
     "quote": "Be the change you want to see in the codebase.",
     "avatar": "avatar.svg",
     "resumeUrl": "resume.pdf",
