@@ -2,6 +2,8 @@
 
 Personal portfolio site — React 19 (with Compiler) + TypeScript + Vite + Tailwind v4 + shadcn/ui (Base UI primitives) + [motion](https://motion.dev). Deployed to GitHub Pages at https://aricallen.github.io/.
 
+The design — a ruled white sheet, highlighter headline, grainy colour cards and topic cards that come out of a box — is explained in [`design-inspo.md`](design-inspo.md).
+
 ## Development
 
 ```bash
@@ -19,22 +21,28 @@ pnpm format    # prettier --write .
 
 All copy renders from **`src/content/portfolio.json`** — edit it and the UI updates; no component changes needed. Types live in `src/lib/content.ts`.
 
-| Key            | What it drives                                                                                                                                                                      |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `profile`      | Hero: name, cycling roles, bio, quote, avatar, social links, floating tech `chips` (first 6 form the inner ring; the rest show from `sm` up), `resumeUrl` (the PDF under `public/`) |
-| `stats`        | Animated count-up strip (`value` + `suffix`, e.g. `54` + `"%"`)                                                                                                                     |
-| `skills`       | Scrolling tech marquee (`expert` + `experienced` are shown)                                                                                                                         |
-| `projects`     | Card grid and the fullscreen detail view                                                                                                                                            |
-| `testimonials` | Quote cards under the projects. Attributed by `role` + `org`; add `name` only with the person's OK                                                                                  |
-| `resume`       | The `/resume` page. Mirrors the single-column resume build; keep them in sync, and replace `public/resume.pdf` when the resume changes                                              |
+| Key            | What it drives                                                                                                                                                        |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `profile`      | Hero greeting (first name, first of `roles`), header avatar, quote (footer and resume), social links, `resumeUrl` (the PDF under `public/`)                           |
+| `stats`        | Count-up cells under the hero (`value` + `suffix`, e.g. `54` + `"%"`)                                                                                                 |
+| `topics`       | The cards that come out of the box, the work filter, and the colour of everything filed under each: `id`, `title`, `tone` (`sky`, `lime`, `pink` or `peach`), `blurb` |
+| `skills`       | The "What's in the box" band                                                                                                                                          |
+| `projects`     | The work grid on the home page and one case-study page each at `/work/<id>`                                                                                           |
+| `testimonials` | The kind-words wall. Attributed by `role` + `org`; add `name` only with the person's OK                                                                               |
+| `resume`       | The `/resume` page. Mirrors the single-column resume build; keep them in sync, and replace `public/resume.pdf` when the resume changes                                |
+
+The employer in the hero ("at dbt Labs") is whichever `resume.experience` entry has a `role` equal to `resume.title`.
+
+Each topic card shows a small looping scene. Those live in `src/components/topic-vignettes.tsx`, keyed by topic `id`; a topic without one still works, its card just has no scene.
 
 Per project:
 
-- `hue` — 0–360 oklch hue tinting that card's accent, glow, and detail view (pick distinct hues so the grid feels varied)
-- `image` — path under `public/` shown on the card and detail banner
-- `highlights` — the 3 bullets on the card face
-- `details` — fullscreen view: `overview`, `role`, `stack`, `outcomes`, `media`, optional `links`
-- `details.media` — "In action" gallery: `{ type: 'image' | 'video', src, poster?, alt, caption }`. The first item spans full width. Images open in a lightbox. Keep assets under `public/projects/<id>/` as WebP (≤1600px) and H.264 MP4 (≤1280px, no audio) with a WebP poster.
+- `id` — the URL slug (`/work/<id>`); changing it breaks links to that case study
+- `topic` — the `id` of the topic it is filed under, which sets its colour and where the filter puts it
+- `image` — path under `public/` shown on the work tile and as the case study's lead figure
+- `highlights` — three one-liners, set as the all-caps beats between parts of the case study
+- `details` — the case study: `overview`, `role`, `stack`, `outcomes`, `media`, optional `links`
+- `details.media` — the figures: `{ type: 'image' | 'video', src, poster?, alt, caption }`. The item whose `src` matches `image` becomes the lead figure (its `alt` and `caption` are used there). Images open in a lightbox. Keep assets under `public/projects/<id>/` as WebP (≤1600px) and H.264 MP4 (≤1280px, no audio) with a WebP poster.
 
 ## Deploying to GitHub Pages
 
@@ -50,4 +58,7 @@ Routes use React Router. Pages has no SPA rewrites, so the workflow copies `inde
 
 - `public/og-image.jpg` is the 1200×630 link-preview card (Open Graph tags in `index.html`). Regenerate it if the name or title changes.
 - Dark/light theme follows system preference, toggleable in the header; the choice persists in `localStorage`. An inline script in `index.html` applies the class before paint to avoid a flash.
-- All animation respects `prefers-reduced-motion` (motion's `MotionConfig reducedMotion="user"` + CSS `motion-safe`/`motion-reduce` variants).
+- Looping decoration (drifting dots, bobbing cards, the card scenes) can be stopped with "pause animations" in the header. It starts paused when the OS asks for reduced motion, and the choice persists in `localStorage`. Anything that loops must carry the `ambient` class so the control reaches it.
+- Entrance animation respects `prefers-reduced-motion` (motion's `MotionConfig reducedMotion="user"` + CSS media queries).
+- Fonts are self-hosted through Fontsource: Fraunces (everything you read) and Archivo at its widest (labels and case-study titles).
+- Route changes use the View Transitions API through React Router's `viewTransition` links; browsers without it just navigate.

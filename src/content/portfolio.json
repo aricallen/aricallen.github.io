@@ -13,20 +13,6 @@
       { "label": "GitHub", "url": "https://github.com/aricallen", "icon": "github" },
       { "label": "LinkedIn", "url": "https://www.linkedin.com/in/aricallen2/", "icon": "linkedin" },
       { "label": "Email", "url": "mailto:aric.allen2@gmail.com", "icon": "mail" }
-    ],
-    "chips": [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "MCP",
-      "PostgreSQL",
-      "GraphQL",
-      "Tailwind",
-      "Docker",
-      "Kubernetes",
-      "Python",
-      "Figma",
-      "Vite"
     ]
   },
   "stats": [
@@ -34,6 +20,26 @@
     { "value": 650, "suffix": "+", "label": "PRs merged across 17 repos in 18 months at dbt Labs" },
     { "value": 54, "suffix": "%", "label": "React render time cut via Compiler migration" },
     { "value": 6, "suffix": "+", "label": "years of full-stack engineering" }
+  ],
+  "topics": [
+    {
+      "id": "agents",
+      "title": "AI agent interfaces",
+      "tone": "sky",
+      "blurb": "Streaming chat, tool calls, and UIs that agents hand back."
+    },
+    {
+      "id": "systems",
+      "title": "Design systems",
+      "tone": "lime",
+      "blurb": "Tokens, theming, and the lint rules that keep them honest."
+    },
+    {
+      "id": "platform",
+      "title": "Platforms & tooling",
+      "tone": "pink",
+      "blurb": "Migrations, monorepos, and tools other teams build on."
+    }
   ],
   "skills": {
     "expert": [
@@ -68,7 +74,7 @@
       "title": "MCP Apps to GA",
       "org": "dbt Labs",
       "period": "2026",
-      "hue": 262,
+      "topic": "agents",
       "image": "projects/mcp-apps/insight-side-pane.webp",
       "summary": "Agent tool UIs built once and rendered in any MCP host, from my RFC to GA in about two months.",
       "highlights": [
@@ -127,7 +133,7 @@
       "title": "Insights Analysis Agent",
       "org": "dbt Labs",
       "period": "2025 — 2026",
-      "hue": 305,
+      "topic": "agents",
       "image": "projects/insights-agent/agent-beta.webp",
       "summary": "dbt's conversational analysis agent, moved from request/response to a streaming LangGraph UI and shipped to GA.",
       "highlights": [
@@ -175,7 +181,7 @@
       "title": "Dev-Agent Workspace",
       "org": "dbt Labs",
       "period": "2026",
-      "hue": 195,
+      "topic": "agents",
       "image": "projects/dev-agent-workspace/split-pane-diff.webp",
       "summary": "A full-screen workspace for reviewing AI code edits, with side-by-side diffs and visual DAG diffs of every change.",
       "highlights": [
@@ -221,7 +227,7 @@
       "title": "React 19 + Compiler Migration",
       "org": "dbt Labs",
       "period": "2025 — 2026",
-      "hue": 155,
+      "topic": "platform",
       "image": "projects/react-19-migration/auto-memo.webp",
       "summary": "Led the React 19 + Compiler migration across six repos, cutting render time by ~54%.",
       "highlights": [
@@ -261,7 +267,7 @@
       "title": "Design Token Pipeline",
       "org": "dbt Labs",
       "period": "2024 — 2025",
-      "hue": 45,
+      "topic": "systems",
       "image": "projects/design-tokens/tokenized-dark.webp",
       "summary": "A Figma-to-code design token pipeline that shipped dark mode company-wide and turned the brand refresh into a one-package change.",
       "highlights": [
@@ -320,7 +326,7 @@
       "title": "Ads Search Platform",
       "org": "Reddit",
       "period": "2022 — 2023",
-      "hue": 345,
+      "topic": "platform",
       "image": "projects/ad-search.svg",
       "summary": "Internal search platform for cross-team discovery and action on ad data.",
       "highlights": [

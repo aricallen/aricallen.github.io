@@ -18,8 +18,17 @@ export type Profile = {
   /** Path under public/ to the downloadable resume PDF */
   resumeUrl: string
   links: SocialLink[]
-  /** Tech chips floating around the hero avatar */
-  chips: string[]
+}
+
+export type Tone = 'sky' | 'lime' | 'pink' | 'peach'
+
+/** One of the things the hero says "here's everything I know about". Projects are filed under one. */
+export type Topic = {
+  id: string
+  title: string
+  /** Colour recipe used for the topic's card, its tag on projects, and their case studies */
+  tone: Tone
+  blurb: string
 }
 
 export type Stat = {
@@ -57,8 +66,8 @@ export type Project = {
   title: string
   org: string
   period: string
-  /** oklch hue (0-360) used to tint the card's glow and accents */
-  hue: number
+  /** `id` of the topic this project is filed under */
+  topic: string
   image: string
   summary: string
   highlights: string[]
@@ -91,6 +100,7 @@ export type Resume = {
 export type PortfolioContent = {
   profile: Profile
   stats: Stat[]
+  topics: Topic[]
   skills: Skills
   projects: Project[]
   testimonials: Testimonial[]
@@ -98,6 +108,9 @@ export type PortfolioContent = {
 }
 
 export const content = raw as PortfolioContent
+
+export const topicOf = (project: Project) =>
+  content.topics.find((topic) => topic.id === project.topic) ?? content.topics[0]
 
 /** Prefix a public/ asset path with the deploy base (e.g. /portfolio/ on GitHub Pages). */
 export const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`
