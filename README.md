@@ -10,7 +10,10 @@ pnpm dev       # local dev server
 pnpm build     # typecheck + production build
 pnpm preview   # serve the production build locally
 pnpm lint      # oxlint
+pnpm format    # prettier --write .
 ```
+
+`pnpm install` sets up a pre-commit hook (husky + lint-staged) that runs Prettier on staged files, so commits match the repo style whatever your editor does on save.
 
 ## Updating content
 
