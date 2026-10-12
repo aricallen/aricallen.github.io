@@ -45,5 +45,6 @@ Routes use React Router. Pages has no SPA rewrites, so the workflow copies `inde
 
 ## Notes
 
+- `public/og-image.jpg` is the 1200×630 link-preview card (Open Graph tags in `index.html`). Regenerate it if the name or title changes.
 - Dark/light theme follows system preference, toggleable in the header; the choice persists in `localStorage`. An inline script in `index.html` applies the class before paint to avoid a flash.
 - All animation respects `prefers-reduced-motion` (motion's `MotionConfig reducedMotion="user"` + CSS `motion-safe`/`motion-reduce` variants).
