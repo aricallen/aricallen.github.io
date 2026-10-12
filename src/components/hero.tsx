@@ -1,27 +1,40 @@
-import { ArrowDownIcon, MapPinIcon } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
-import { type CSSProperties, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Link } from 'react-router'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { HalftonePortrait } from '@/components/halftone-portrait'
+import { Slash } from '@/components/primitives'
 import { asset, content } from '@/lib/content'
-import { cn } from '@/lib/utils'
+import { plainText } from '@/lib/format'
+import { EASE } from '@/lib/motion'
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-}
+type Word = { word: string; emphasized: boolean }
 
-const item = {
-  hidden: { opacity: 0, y: 24, filter: 'blur(6px)' },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
-  },
-}
+const NBSP = '\u00a0'
+
+/**
+ * Split a statement into words, remembering which ones sit inside _emphasis_ markers. Words that
+ * would look stranded at the edge of a line are glued to a neighbour: a lone letter ("I") to the
+ * word after it, and a short sentence ending ("II.", "in.") to the word before it.
+ */
+const toWords = (text: string) =>
+  text
+    .split(/(_[^_]+_)/g)
+    .flatMap((part, index) => {
+      const emphasized = index % 2 === 1
+      return (emphasized ? part.slice(1, -1) : part)
+        .split(' ')
+        .filter(Boolean)
+        .map((word): Word => ({ word, emphasized }))
+    })
+    .reduce<Word[]>((words, next) => {
+      const previous = words.at(-1)
+      const glue =
+        previous?.emphasized === next.emphasized &&
+        (previous.word.length === 1 || (next.word.length <= 3 && next.word.endsWith('.')))
+      if (previous && glue) previous.word += NBSP + next.word
+      else words.push(next)
+      return words
+    }, [])
 
 const RotatingRole = ({ roles }: { roles: string[] }) => {
   const [index, setIndex] = useState(0)
@@ -32,15 +45,15 @@ const RotatingRole = ({ roles }: { roles: string[] }) => {
   }, [roles.length])
 
   return (
-    <span className="relative inline-flex h-[1.4em] overflow-hidden align-bottom">
+    <span className="relative inline-flex h-4 overflow-hidden align-bottom">
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
           key={roles[index]}
-          initial={{ y: '100%', opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: '-100%', opacity: 0 }}
-          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="text-gradient whitespace-nowrap"
+          initial={{ y: '100%' }}
+          animate={{ y: 0 }}
+          exit={{ y: '-100%' }}
+          transition={{ duration: 0.45, ease: EASE }}
+          className="whitespace-nowrap"
         >
           {roles[index]}
         </motion.span>
@@ -49,125 +62,80 @@ const RotatingRole = ({ roles }: { roles: string[] }) => {
   )
 }
 
-const INNER_RING_SIZE = 6
-
-/** Spread chips evenly around two orbits; the outer one is offset so chips don't line up. */
-const orbitPosition = (index: number, total: number) => {
-  const inner = index < INNER_RING_SIZE
-  const ringIndex = inner ? index : index - INNER_RING_SIZE
-  const ringCount = inner ? Math.min(total, INNER_RING_SIZE) : total - INNER_RING_SIZE
-  const angle = ((ringIndex + (inner ? 0 : 0.5)) / ringCount) * 2 * Math.PI - Math.PI / 2
-  const radius = inner ? 54 : 74
-  return {
-    inner,
-    position: {
-      '--chip-x': `${50 + radius * Math.cos(angle)}%`,
-      '--chip-y': `${50 + radius * Math.sin(angle)}%`,
-    } as CSSProperties,
-    floatDelay: { animationDelay: `${-index * 0.9}s` },
-  }
-}
-
 export const Hero = () => {
   const { profile } = content
+  const [title, ...otherRoles] = profile.roles
+  const statement = `${profile.name}. ${title}. ${profile.headline}`
 
   return (
     <section
       id="about"
       aria-label="Introduction"
-      className="relative mx-auto max-w-6xl px-4 pt-36 pb-20 sm:px-6 sm:pt-44"
+      className="relative flex min-h-[calc(100svh-4.5rem)] flex-col px-3 pt-2"
     >
-      <div className="grid items-center gap-12 lg:grid-cols-[1.4fr_1fr]">
-        <motion.div variants={container} initial="hidden" animate="visible">
-          <motion.p variants={item} className="mb-4 flex items-center gap-1.5 font-mono text-sm text-muted-foreground">
-            <MapPinIcon aria-hidden className="size-3.5 text-primary" />
-            {profile.location}
-          </motion.p>
-          <motion.h1
-            variants={item}
-            className="font-heading text-5xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-6xl md:text-7xl"
-          >
-            {profile.name}
-          </motion.h1>
-          <motion.p variants={item} className="mt-3 font-heading text-2xl font-medium sm:text-3xl">
-            <RotatingRole roles={profile.roles} />
-          </motion.p>
-          <motion.p
-            variants={item}
-            className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
-          >
-            {profile.bio}
-          </motion.p>
-          <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-3">
-            <Button size="lg" nativeButton={false} render={<a href="#work" />}>
-              See my work
-              <ArrowDownIcon data-icon="inline-end" />
-            </Button>
-            <Button size="lg" variant="outline" nativeButton={false} render={<Link to="/resume" />}>
-              Resume
-            </Button>
-          </motion.div>
-          <motion.blockquote
-            variants={item}
-            className="mt-10 border-l-2 border-primary/50 pl-4 font-mono text-sm text-muted-foreground italic"
-          >
-            “{profile.quote}”
-          </motion.blockquote>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto w-fit"
-        >
-          <div
-            aria-hidden
-            className="animate-spin-slow absolute -inset-1.5 rounded-full bg-[conic-gradient(from_0deg,var(--brand-a),var(--brand-b),var(--brand-c),var(--brand-a))] opacity-80 blur-[2px]"
-          />
-          <Avatar className="relative size-56 border-4 border-background sm:size-64">
-            <AvatarImage src={asset(profile.avatar)} alt={`Portrait of ${profile.name}`} />
-            <AvatarFallback className="font-heading text-5xl">
-              {profile.name
-                .split(' ')
-                .map((part) => part[0])
-                .join('')}
-            </AvatarFallback>
-          </Avatar>
-          {profile.chips.map((chip, index) => {
-            const { inner, position, floatDelay } = orbitPosition(index, profile.chips.length)
-            return (
-              <div
-                key={chip}
-                style={position}
-                className={cn(
-                  'absolute top-(--chip-y) left-(--chip-x) -translate-x-1/2 -translate-y-1/2',
-                  !inner && 'hidden sm:block',
-                )}
+      <motion.h1
+        aria-label={plainText(statement)}
+        initial="hidden"
+        animate="visible"
+        transition={{ staggerChildren: 0.035, delayChildren: 0.1 }}
+        className="type-display relative z-10 indent-[1.05em] text-[clamp(2.9rem,7vw,8.5rem)] lg:max-w-[76%]"
+      >
+        {toWords(statement).map(({ word, emphasized }, index) => {
+          const Tag = emphasized ? motion.em : motion.span
+          return (
+            <Fragment key={index}>
+              {/* The mask is padded so the clip doesn't shave italic overhangs or commas. */}
+              <span
+                aria-hidden
+                className="-mx-[0.04em] -mb-[0.1em] inline-block overflow-hidden px-[0.04em] pb-[0.1em] indent-0"
               >
-                <Badge
-                  variant="secondary"
-                  style={floatDelay}
-                  className="animate-float h-6 px-3 font-mono shadow-md ring-1 ring-foreground/10"
+                <Tag
+                  variants={{ hidden: { y: '105%' }, visible: { y: 0 } }}
+                  transition={{ duration: 0.9, ease: EASE }}
+                  className="inline-block"
                 >
-                  {chip}
-                </Badge>
-              </div>
-            )
-          })}
-        </motion.div>
-      </div>
+                  {word}
+                </Tag>
+              </span>{' '}
+            </Fragment>
+          )
+        })}
+      </motion.h1>
 
-      <motion.a
-        href="#work"
-        aria-label="Scroll to work"
+      <HalftonePortrait
+        src={asset(profile.avatar)}
+        alt={`Halftone portrait of ${profile.name}`}
+        className="mt-6 aspect-square w-full lg:absolute lg:right-3 lg:bottom-0 lg:mt-0 lg:w-[min(44vw,42rem)]"
+      />
+
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.4 }}
-        className="absolute bottom-2 left-1/2 hidden -translate-x-1/2 rounded-full p-2 text-muted-foreground transition-colors hover:text-foreground sm:block"
+        transition={{ duration: 0.8, delay: 0.9 }}
+        className="type-label relative z-10 mt-8 flex flex-col gap-4 pb-6 lg:mt-auto lg:max-w-md"
       >
-        <ArrowDownIcon aria-hidden className="size-5 animate-bounce" />
-      </motion.a>
+        <dl className="border-t border-border">
+          <div className="flex justify-between gap-6 border-b border-border py-2">
+            <dt className="text-muted-foreground">Based in</dt>
+            <dd>{profile.location}</dd>
+          </div>
+          <div className="flex justify-between gap-6 border-b border-border py-2">
+            <dt className="text-muted-foreground">Also</dt>
+            <dd>
+              <RotatingRole roles={otherRoles} />
+            </dd>
+          </div>
+        </dl>
+        <p>
+          <a href="#work" className="bracket -ml-1.5">
+            See the work ↓
+          </a>
+          <Slash />
+          <Link to="/resume" viewTransition className="bracket">
+            Resume →
+          </Link>
+        </p>
+      </motion.div>
     </section>
   )
 }
