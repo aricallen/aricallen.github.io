@@ -1,6 +1,6 @@
 # Portfolio
 
-Personal portfolio site — React 19 (with Compiler) + TypeScript + Vite + Tailwind v4 + shadcn/ui (Base UI primitives) + [motion](https://motion.dev). Deployed to GitHub Pages.
+Personal portfolio site — React 19 (with Compiler) + TypeScript + Vite + Tailwind v4 + shadcn/ui (Base UI primitives) + [motion](https://motion.dev). Deployed to GitHub Pages at https://aricallen.github.io/.
 
 ## Development
 
@@ -32,10 +32,6 @@ Per project:
 - `details` — fullscreen view: `overview`, `role`, `stack`, `outcomes`, `media`, optional `links`
 - `details.media` — "In action" gallery: `{ type: 'image' | 'video', src, poster?, alt, caption }`. The first item spans full width. Images open in a lightbox. Keep assets under `public/projects/<id>/` as WebP (≤1600px) and H.264 MP4 (≤1280px, no audio) with a WebP poster.
 
-### Placeholders to replace
-
-- [ ] Footer "View source" URL in `src/components/site-footer.tsx` if the repo name isn't `portfolio`.
-
 ## Deploying to GitHub Pages
 
 1. Push the repo to GitHub (default branch `main`).
@@ -44,7 +40,7 @@ Per project:
 
 The workflow derives the Vite `base` path from the repo name (`/<repo>/` for project sites, `/` for `<user>.github.io`). For a custom domain, set `VITE_BASE=/` and add a `CNAME` file to `public/`.
 
-Routes use React Router. Pages has no SPA rewrites, so the workflow copies `index.html` to `404.html` so deep links like `/resume` still load.
+Routes use React Router. Pages has no SPA rewrites, so the workflow copies `index.html` to `404.html` so deep links like `/resume` still load. Unknown paths (including old `/portfolio/...` links) redirect home.
 
 ## Notes
 

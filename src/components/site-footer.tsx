@@ -11,7 +11,7 @@ export const SiteFooter = () => {
         <p className="text-sm text-muted-foreground">
           © {year} {profile.name} · Designed & built with React, Tailwind & motion ·{' '}
           <a
-            href="https://github.com/aricallen/portfolio"
+            href="https://github.com/aricallen/aricallen.github.io"
             target="_blank"
             rel="noreferrer"
             className="underline underline-offset-4 transition-colors hover:text-foreground"

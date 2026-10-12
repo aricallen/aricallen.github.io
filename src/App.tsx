@@ -1,5 +1,5 @@
 import { MotionConfig } from 'motion/react'
-import { createBrowserRouter, Outlet, RouterProvider, ScrollRestoration } from 'react-router'
+import { createBrowserRouter, Navigate, Outlet, RouterProvider, ScrollRestoration } from 'react-router'
 import { Background } from '@/components/background'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
@@ -27,6 +27,7 @@ const router = createBrowserRouter(
       children: [
         { index: true, element: <HomePage /> },
         { path: 'resume', element: <ResumePage /> },
+        { path: '*', element: <Navigate to="/" replace /> },
       ],
     },
   ],
