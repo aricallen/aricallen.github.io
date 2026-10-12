@@ -15,8 +15,11 @@ export type Profile = {
   bio: string
   quote: string
   avatar: string
+  /** Path under public/ to the downloadable resume PDF */
   resumeUrl: string
   links: SocialLink[]
+  /** Tech chips floating around the hero avatar */
+  chips: string[]
 }
 
 export type Stat = {
@@ -62,11 +65,27 @@ export type Project = {
   details: ProjectDetails
 }
 
+export type ResumeEntry = {
+  company: string
+  role: string
+  dates: string
+  bullets: string[]
+}
+
+export type Resume = {
+  title: string
+  experience: ResumeEntry[]
+  highlights: string[]
+  skills: { label: string; items: string[] }[]
+  education: { degree: string; school: string; dates: string }
+}
+
 export type PortfolioContent = {
   profile: Profile
   stats: Stat[]
   skills: Skills
   projects: Project[]
+  resume: Resume
 }
 
 export const content = raw as PortfolioContent

@@ -18,10 +18,11 @@ All copy renders from **`src/content/portfolio.json`** — edit it and the UI up
 
 | Key | What it drives |
 | --- | --- |
-| `profile` | Hero: name, cycling roles, bio, quote, avatar, social links, resume URL |
+| `profile` | Hero: name, cycling roles, bio, quote, avatar, social links, floating tech `chips` (first 6 form the inner ring; the rest show from `sm` up), `resumeUrl` (the PDF under `public/`) |
 | `stats` | Animated count-up strip (`value` + `suffix`, e.g. `54` + `"%"`) |
 | `skills` | Scrolling tech marquee (`expert` + `experienced` are shown) |
 | `projects` | Card grid and the fullscreen detail view |
+| `resume` | The `/resume` page. Mirrors the single-column resume build; keep them in sync, and replace `public/resume.pdf` when the resume changes |
 
 Per project:
 
@@ -42,6 +43,8 @@ Per project:
 3. Push to `main` — `.github/workflows/deploy.yml` builds and deploys automatically.
 
 The workflow derives the Vite `base` path from the repo name (`/<repo>/` for project sites, `/` for `<user>.github.io`). For a custom domain, set `VITE_BASE=/` and add a `CNAME` file to `public/`.
+
+Routes use React Router. Pages has no SPA rewrites, so the workflow copies `index.html` to `404.html` so deep links like `/resume` still load.
 
 ## Notes
 

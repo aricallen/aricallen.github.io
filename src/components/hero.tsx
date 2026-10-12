@@ -1,10 +1,12 @@
 import { ArrowDownIcon, MapPinIcon } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
-import { useEffect, useState } from 'react'
+import { type CSSProperties, useEffect, useState } from 'react'
+import { Link } from 'react-router'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { asset, content } from '@/lib/content'
+import { cn } from '@/lib/utils'
 
 const container = {
   hidden: {},
@@ -47,11 +49,24 @@ const RotatingRole = ({ roles }: { roles: string[] }) => {
   )
 }
 
-const floatingChips = [
-  { label: 'React', className: '-left-6 top-8 [animation-delay:-1s]' },
-  { label: 'TypeScript', className: '-right-8 top-24 [animation-delay:-2.5s]' },
-  { label: 'MCP', className: '-left-10 bottom-16 [animation-delay:-4s]' },
-]
+const INNER_RING_SIZE = 6
+
+/** Spread chips evenly around two orbits; the outer one is offset so chips don't line up. */
+const orbitPosition = (index: number, total: number) => {
+  const inner = index < INNER_RING_SIZE
+  const ringIndex = inner ? index : index - INNER_RING_SIZE
+  const ringCount = inner ? Math.min(total, INNER_RING_SIZE) : total - INNER_RING_SIZE
+  const angle = ((ringIndex + (inner ? 0 : 0.5)) / ringCount) * 2 * Math.PI - Math.PI / 2
+  const radius = inner ? 54 : 74
+  return {
+    inner,
+    position: {
+      '--chip-x': `${50 + radius * Math.cos(angle)}%`,
+      '--chip-y': `${50 + radius * Math.sin(angle)}%`,
+    } as CSSProperties,
+    floatDelay: { animationDelay: `${-index * 0.9}s` },
+  }
+}
 
 export const Hero = () => {
   const { profile } = content
@@ -87,7 +102,7 @@ export const Hero = () => {
               See my work
               <ArrowDownIcon data-icon="inline-end" />
             </Button>
-            <Button size="lg" variant="outline" nativeButton={false} render={<a href={profile.resumeUrl} />}>
+            <Button size="lg" variant="outline" nativeButton={false} render={<Link to="/resume" />}>
               Resume
             </Button>
           </motion.div>
@@ -115,15 +130,27 @@ export const Hero = () => {
                 .join('')}
             </AvatarFallback>
           </Avatar>
-          {floatingChips.map((chip) => (
-            <Badge
-              key={chip.label}
-              variant="secondary"
-              className={`animate-float absolute h-6 px-3 font-mono shadow-md ring-1 ring-foreground/10 ${chip.className}`}
-            >
-              {chip.label}
-            </Badge>
-          ))}
+          {profile.chips.map((chip, index) => {
+            const { inner, position, floatDelay } = orbitPosition(index, profile.chips.length)
+            return (
+              <div
+                key={chip}
+                style={position}
+                className={cn(
+                  'absolute top-(--chip-y) left-(--chip-x) -translate-x-1/2 -translate-y-1/2',
+                  !inner && 'hidden sm:block',
+                )}
+              >
+                <Badge
+                  variant="secondary"
+                  style={floatDelay}
+                  className="animate-float h-6 px-3 font-mono shadow-md ring-1 ring-foreground/10"
+                >
+                  {chip}
+                </Badge>
+              </div>
+            )
+          })}
         </motion.div>
       </div>
 

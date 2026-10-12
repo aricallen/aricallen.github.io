@@ -63,7 +63,7 @@ export const ProjectCard = ({ project, onOpen }: ProjectCardProps) => {
           loading="lazy"
           className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-card/70 to-transparent" />
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-5">

@@ -8,18 +8,19 @@
     "bio": "Staff frontend engineer with 10+ years of shipping polished, accessible web apps — AI agent workspaces and MCP apps at dbt Labs, design systems and ads tooling at Reddit, developer platforms at Sysdig and Apple. Berklee-trained musician who brings the same ear for craft to the codebase.",
     "quote": "Be the change you want to see in the codebase.",
     "avatar": "avatar.svg",
-    "resumeUrl": "#",
+    "resumeUrl": "resume.pdf",
     "links": [
       { "label": "GitHub", "url": "https://github.com/aricallen", "icon": "github" },
       { "label": "LinkedIn", "url": "https://www.linkedin.com/in/aricallen2/", "icon": "linkedin" },
       { "label": "Email", "url": "mailto:aric.allen2@gmail.com", "icon": "mail" }
-    ]
+    ],
+    "chips": ["React", "TypeScript", "Node.js", "MCP", "PostgreSQL", "GraphQL", "Tailwind", "Docker", "Kubernetes", "Python", "Figma", "Vite"]
   },
   "stats": [
     { "value": 10, "suffix": "+", "label": "years of frontend engineering" },
-    { "value": 650, "suffix": "+", "label": "PRs merged in 18 months at Reddit" },
+    { "value": 650, "suffix": "+", "label": "PRs merged across 17 repos in 18 months at dbt Labs" },
     { "value": 54, "suffix": "%", "label": "React render time cut via Compiler migration" },
-    { "value": 17, "suffix": "", "label": "repos contributed to across the stack" }
+    { "value": 6, "suffix": "+", "label": "years of full-stack engineering" }
   ],
   "skills": {
     "expert": ["TypeScript", "React", "Node.js", "CSS", "Tailwind", "Vite", "Express", "Cypress", "React Testing Library"],
@@ -190,7 +191,7 @@
       "summary": "Led the React 19 + Compiler migration across six repos, cutting render time by ~54%.",
       "highlights": [
         "React rendering time cut by ~54% with a compiled component library",
-        "Unified five frontend apps into one monorepo",
+        "Key contributor to unifying five frontend apps into one monorepo",
         "CDN-split the editor core to fix chronic CI failures"
       ],
       "details": {
@@ -305,5 +306,104 @@
         "links": []
       }
     }
-  ]
+  ],
+  "resume": {
+    "title": "Senior Software Engineer II",
+    "experience": [
+      {
+        "company": "Anthropic",
+        "role": "Human Data Researcher (Contract)",
+        "dates": "2026 — Present",
+        "bullets": [
+          "Benchmarked frontier vs. research models on software-engineering tasks",
+          "Performed behavioral grading of AI grader models, scoring their evaluations across six axes",
+          "Applied human-in-the-loop evaluation methods to assess model and meta-model outputs"
+        ]
+      },
+      {
+        "company": "dbt Labs",
+        "role": "Senior Software Engineer II",
+        "dates": "2023 — Present",
+        "bullets": [
+          "Led MCP Apps to GA – authored the RFC, shipped custom UI across the dbt platform, VS Code, and Claude Desktop",
+          "Shipped dbt's Insights analysis agent to GA: streaming, tool calling, SQL execution",
+          "Frontend lead for full-screen dev-agent workspace with inline diff and DAG review of AI edits",
+          "Led React 19 + Compiler migration across six repos, cutting React rendering time by ~54%",
+          "Key contributor to unifying five frontend apps into one monorepo; CDN-split editor core to fix chronic CI failures",
+          "Built local-dev tooling collapsing the 15+ shared-package dev loop into a single step",
+          "Core member of Frontend Guild – steward of shared component library and accessibility standards"
+        ]
+      },
+      {
+        "company": "Reddit",
+        "role": "Full-Stack Software Engineer",
+        "dates": "2022 — 2023",
+        "bullets": [
+          "Implemented internal ad search platform enabling cross-team discovery and action on ad data",
+          "Built BI-to-Ads data synchronization and scaled ad review microservices for new ad products"
+        ]
+      },
+      {
+        "company": "Sysdig",
+        "role": "SE2, SE3, Tech Lead",
+        "dates": "2017 — 2022",
+        "bullets": [
+          "Migrated build pipeline from waterfall to CI/CD, tripling release velocity",
+          "Migrated Ember codebase to React, TypeScript, React Testing Library and Webpack",
+          "Mentored engineers through code reviews and weekly contributor syncs",
+          "Partnered with product and design to rapidly prototype and adapt to evolving customer needs"
+        ]
+      },
+      {
+        "company": "Apple Inc.",
+        "role": "Software Engineer",
+        "dates": "2015 — 2017",
+        "bullets": [
+          "Built web and iOS event-attendee systems used globally, with on-site iPad + QR check-in",
+          "Delivered rapid prototypes of web applications to meet evolving requirements for individual events"
+        ]
+      }
+    ],
+    "highlights": [
+      "10+ years of professional Front-End experience; 6+ years of professional Full-Stack experience",
+      "Lead architect for design token pipeline from Figma to shared npm package enabling seamless rollout of dark mode, theming, and brand refresh across six repositories",
+      "650+ merged PRs across 17 repositories in 18 months – app UIs, shared packages, API gateway, telemetry, and infra",
+      "Peer-recognized force multiplier – cross-team unblocking, DX tooling, and docs written for humans and AI agents",
+      "Zero-to-one builder – stood up new apps and shared packages from scratch and carried them to production",
+      "Authored testing guidelines and tooling adopted across 4 teams, raising coverage without blocking development"
+    ],
+    "skills": [
+      {
+        "label": "Expert",
+        "items": ["TypeScript", "JavaScript", "React", "Node.js", "Express", "HTML", "CSS", "Tailwind", "React Testing Library", "Cypress", "Vite"]
+      },
+      {
+        "label": "Experienced",
+        "items": [
+          "Next.js",
+          "MCP (apps, clients, servers)",
+          "SQL/PostgreSQL",
+          "K8s",
+          "GHA",
+          "GraphQL",
+          "MongoDB",
+          "Docker",
+          "Python",
+          "Figma",
+          "Electron",
+          "Ember",
+          "Sass",
+          "Jest",
+          "Styled Components",
+          "shadcn",
+          "Vitest"
+        ]
+      },
+      {
+        "label": "Learning",
+        "items": ["Go", "Rust", "Data Science / Machine Learning"]
+      }
+    ],
+    "education": { "degree": "Bachelor of Arts, Electronic Production & Design", "school": "Berklee College of Music", "dates": "2008 — 2011" }
+  }
 }
