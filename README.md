@@ -18,25 +18,23 @@ All copy renders from **`src/content/portfolio.json`** — edit it and the UI up
 
 | Key | What it drives |
 | --- | --- |
-| `profile` | Hero: name, cycling roles, bio, quote, avatar, social links, resume URL |
+| `profile` | Hero: name, cycling roles, bio, quote, avatar, social links, floating tech `chips` (first 6 form the inner ring; the rest show from `sm` up), `resumeUrl` (the PDF under `public/`) |
 | `stats` | Animated count-up strip (`value` + `suffix`, e.g. `54` + `"%"`) |
 | `skills` | Scrolling tech marquee (`expert` + `experienced` are shown) |
 | `projects` | Card grid and the fullscreen detail view |
+| `resume` | The `/resume` page. Mirrors the single-column resume build; keep them in sync, and replace `public/resume.pdf` when the resume changes |
 
 Per project:
 
 - `hue` — 0–360 oklch hue tinting that card's accent, glow, and detail view (pick distinct hues so the grid feels varied)
 - `image` — path under `public/` shown on the card and detail banner
 - `highlights` — the 3 bullets on the card face
-- `details` — fullscreen view: `overview`, `role`, `stack`, `outcomes`, optional `links`
+- `details` — fullscreen view: `overview`, `role`, `stack`, `outcomes`, `media`, optional `links`
+- `details.media` — "In action" gallery: `{ type: 'image' | 'video', src, poster?, alt, caption }`. The first item spans full width. Images open in a lightbox. Keep assets under `public/projects/<id>/` as WebP (≤1600px) and H.264 MP4 (≤1280px, no audio) with a WebP poster.
 
 ### Placeholders to replace
 
-- [ ] `public/projects/*.svg` — generated mockups; replace with real product screenshots (16:10 or wider, ~1200px). Update each project's `image` path if you change filenames.
-- [ ] `public/avatar.svg` — replace with a real photo (square, ≥512px) and update `profile.avatar`.
-- [ ] `profile.resumeUrl` — currently `"#"`. Drop a PDF in `public/` (e.g. `public/resume.pdf`) and set to `resume.pdf`, or link externally.
 - [ ] Footer "View source" URL in `src/components/site-footer.tsx` if the repo name isn't `portfolio`.
-- [ ] `public/favicon.svg` — generated monogram; replace if you want.
 
 ## Deploying to GitHub Pages
 
@@ -45,6 +43,8 @@ Per project:
 3. Push to `main` — `.github/workflows/deploy.yml` builds and deploys automatically.
 
 The workflow derives the Vite `base` path from the repo name (`/<repo>/` for project sites, `/` for `<user>.github.io`). For a custom domain, set `VITE_BASE=/` and add a `CNAME` file to `public/`.
+
+Routes use React Router. Pages has no SPA rewrites, so the workflow copies `index.html` to `404.html` so deep links like `/resume` still load.
 
 ## Notes
 

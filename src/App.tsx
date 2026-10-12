@@ -1,24 +1,36 @@
 import { MotionConfig } from 'motion/react'
+import { createBrowserRouter, Outlet, RouterProvider, ScrollRestoration } from 'react-router'
 import { Background } from '@/components/background'
-import { Hero } from '@/components/hero'
-import { ProjectsSection } from '@/components/projects-section'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
-import { SkillsMarquee } from '@/components/skills-marquee'
-import { StatsStrip } from '@/components/stats-strip'
+import { HomePage } from '@/pages/home-page'
+import { ResumePage } from '@/pages/resume-page'
 
-export const App = () => (
+const Layout = () => (
   <MotionConfig reducedMotion="user">
     <div id="top" className="relative min-h-dvh">
       <Background />
       <SiteHeader />
       <main>
-        <Hero />
-        <StatsStrip />
-        <SkillsMarquee />
-        <ProjectsSection />
+        <Outlet />
       </main>
       <SiteFooter />
     </div>
+    <ScrollRestoration />
   </MotionConfig>
 )
+
+const router = createBrowserRouter(
+  [
+    {
+      element: <Layout />,
+      children: [
+        { index: true, element: <HomePage /> },
+        { path: 'resume', element: <ResumePage /> },
+      ],
+    },
+  ],
+  { basename: import.meta.env.BASE_URL },
+)
+
+export const App = () => <RouterProvider router={router} />

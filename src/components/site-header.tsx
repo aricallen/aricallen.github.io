@@ -1,14 +1,8 @@
-import { MailIcon } from 'lucide-react'
-import { GithubIcon, LinkedinIcon } from '@/components/brand-icons'
+import { Link } from 'react-router'
+import { SocialIcon } from '@/components/brand-icons'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
-import { content, type SocialLink } from '@/lib/content'
-
-const iconFor = (icon: SocialLink['icon']) => {
-  if (icon === 'github') return <GithubIcon />
-  if (icon === 'linkedin') return <LinkedinIcon />
-  return <MailIcon />
-}
+import { content } from '@/lib/content'
 
 export const SiteHeader = () => {
   const { profile } = content
@@ -16,18 +10,18 @@ export const SiteHeader = () => {
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a
-          href="#top"
+        <Link
+          to="/"
           className="font-mono text-lg font-semibold tracking-tight text-gradient rounded-md focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
         >
           {profile.monogram}
-        </a>
+        </Link>
         <nav aria-label="Primary" className="flex items-center gap-1">
-          <Button variant="ghost" nativeButton={false} render={<a href="#work" />}>
+          <Button variant="ghost" nativeButton={false} render={<Link to={{ pathname: '/', hash: '#work' }} />}>
             Work
           </Button>
-          <Button variant="ghost" nativeButton={false} render={<a href="#about" />}>
-            About
+          <Button variant="ghost" nativeButton={false} render={<Link to="/resume" />}>
+            Resume
           </Button>
           {profile.links.map((link) => (
             <Button
@@ -44,7 +38,7 @@ export const SiteHeader = () => {
                 />
               }
             >
-              {iconFor(link.icon)}
+              <SocialIcon icon={link.icon} />
             </Button>
           ))}
           <ThemeToggle />
