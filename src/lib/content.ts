@@ -65,6 +65,14 @@ export type Project = {
   details: ProjectDetails
 }
 
+export type Testimonial = {
+  quote: string
+  /** Attributed by role rather than name unless the person has agreed to be named */
+  name?: string
+  role: string
+  org: string
+}
+
 export type ResumeEntry = {
   company: string
   role: string
@@ -85,6 +93,7 @@ export type PortfolioContent = {
   stats: Stat[]
   skills: Skills
   projects: Project[]
+  testimonials: Testimonial[]
   resume: Resume
 }
 
