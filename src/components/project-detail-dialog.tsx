@@ -1,6 +1,6 @@
 import { Dialog as DialogPrimitive } from '@base-ui/react/dialog'
 import { CheckIcon, ExternalLinkIcon, XIcon } from 'lucide-react'
-import type { CSSProperties } from 'react'
+import { type CSSProperties, useRef } from 'react'
 import {
   Dialog,
   DialogClose,
@@ -22,6 +22,8 @@ type ProjectDetailDialogProps = {
 }
 
 export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDetailDialogProps) => {
+  const closeRef = useRef<HTMLButtonElement>(null)
+
   if (!project) return null
 
   return (
@@ -29,6 +31,8 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
       <DialogPortal>
         <DialogOverlay className="bg-black/40 supports-backdrop-filter:backdrop-blur-sm" />
         <DialogPrimitive.Popup
+          // The default (first tabbable element) is a gallery image, which scrolls the dialog past the overview.
+          initialFocus={closeRef}
           data-slot="dialog-content"
           style={{ '--accent-c': `oklch(0.7 0.16 ${project.hue})` } as CSSProperties}
           className="fixed inset-2 z-50 overflow-hidden rounded-2xl bg-background ring-1 ring-foreground/15 outline-none sm:inset-6 lg:inset-x-16 lg:inset-y-10 motion-safe:data-open:animate-flip-in motion-safe:data-closed:animate-flip-out motion-reduce:duration-100 motion-reduce:data-open:animate-in motion-reduce:data-open:fade-in-0 motion-reduce:data-closed:animate-out motion-reduce:data-closed:fade-out-0"
@@ -38,7 +42,7 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
               <img
                 src={asset(project.image)}
                 alt={`Screenshot of ${project.title}`}
-                className="size-full object-cover object-top"
+                className="size-full object-cover"
               />
               <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
             </div>
@@ -135,6 +139,7 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
           </div>
 
           <DialogClose
+            ref={closeRef}
             render={
               <Button
                 variant="secondary"
