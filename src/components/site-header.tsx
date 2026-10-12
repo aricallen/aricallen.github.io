@@ -1,46 +1,79 @@
-import { Link } from 'react-router'
-import { SocialIcon } from '@/components/brand-icons'
+import { Link, useLocation } from 'react-router'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { Button } from '@/components/ui/button'
 import { content } from '@/lib/content'
+import { cn } from '@/lib/utils'
 
+const NAV = [
+  {
+    label: 'Home',
+    to: '/',
+    match: (pathname: string, hash: string) => pathname === '/' && hash === '',
+    // The monogram already links home, so this is only needed when there's room for it.
+    hideOnMobile: true,
+  },
+  {
+    label: 'Work',
+    to: { pathname: '/', hash: '#work' },
+    match: (pathname: string, hash: string) => pathname === '/' && hash === '#work',
+  },
+  { label: 'Resume', to: '/resume', match: (pathname: string) => pathname === '/resume' },
+  {
+    label: 'Contact',
+    to: { pathname: '/', hash: '#contact' },
+    match: (pathname: string, hash: string) => pathname === '/' && hash === '#contact',
+  },
+]
+
+/** Fixed top bar: monogram and location on the left, primary nav on the right. */
 export const SiteHeader = () => {
   const { profile } = content
+  const { pathname, hash } = useLocation()
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
+    <header className="fixed inset-x-0 top-0 z-40 h-bar rule-b bg-background/85 backdrop-blur-md">
+      <div className="flex h-full items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           to="/"
-          className="font-mono text-lg font-semibold tracking-tight text-gradient rounded-md focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+          className="label flex items-center gap-2 rounded-xs text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
-          {profile.monogram}
+          <span aria-hidden className="text-accent-ink">
+            Ø
+          </span>
+          <span className="font-medium">{profile.monogram}</span>
+          <span aria-hidden className="hidden text-muted-foreground sm:inline">
+            //
+          </span>
+          <span className="hidden text-muted-foreground sm:inline">{profile.location}</span>
         </Link>
-        <nav aria-label="Primary" className="flex items-center gap-1">
-          <Button variant="ghost" nativeButton={false} render={<Link to={{ pathname: '/', hash: '#work' }} />}>
-            Work
-          </Button>
-          <Button variant="ghost" nativeButton={false} render={<Link to="/resume" />}>
-            Resume
-          </Button>
-          {profile.links.map((link) => (
-            <Button
-              key={link.label}
-              variant="ghost"
-              size="icon"
-              nativeButton={false}
-              render={
-                <a
-                  href={link.url}
-                  target={link.url.startsWith('http') ? '_blank' : undefined}
-                  rel="noreferrer"
-                  aria-label={link.label}
-                />
-              }
-            >
-              <SocialIcon icon={link.icon} />
-            </Button>
-          ))}
+
+        <nav aria-label="Primary" className="flex shrink-0 items-center gap-2">
+          <ul className="label flex items-center gap-2 text-muted-foreground">
+            {NAV.map((item, index) => {
+              const active = item.match(pathname, hash)
+              return (
+                <li
+                  key={item.label}
+                  className={cn('flex items-center gap-2', 'hideOnMobile' in item && 'hidden sm:flex')}
+                >
+                  {index > 0 && (
+                    <span aria-hidden className={cn(index === 1 && 'hidden sm:inline')}>
+                      //
+                    </span>
+                  )}
+                  <Link
+                    to={item.to}
+                    aria-current={active ? 'page' : undefined}
+                    className={cn(
+                      'link-rule rounded-xs py-1 outline-none transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring',
+                      active && 'text-foreground line-through decoration-1',
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
           <ThemeToggle />
         </nav>
       </div>

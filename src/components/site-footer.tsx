@@ -5,16 +5,28 @@ export const SiteFooter = () => {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-border/60 py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 text-center sm:px-6">
-        <p className="font-mono text-sm text-muted-foreground italic">“{profile.quote}”</p>
-        <p className="text-sm text-muted-foreground">
-          © {year} {profile.name} · Designed & built with React, Tailwind & motion ·{' '}
+    <footer className="rule-t grid grid-cols-1 gap-x-6 gap-y-6 px-4 py-10 pb-[calc(var(--bar-height)+2.5rem)] sm:px-6 lg:grid-cols-[2fr_3fr]">
+      <h2 className="label text-muted-foreground">
+        <span aria-hidden className="text-accent-ink">
+          05
+        </span>
+        <span aria-hidden> // </span>
+        <span className="text-foreground">Colophon</span>
+      </h2>
+      <div className="label flex max-w-xl flex-col gap-4 leading-relaxed text-muted-foreground">
+        <p>
+          This website was designed and built by {profile.name}. Set in Instrument Serif and Geist Mono. Built with
+          React 19 (with the Compiler), TypeScript, Vite, Tailwind v4, and motion; hosted on GitHub Pages. The portrait
+          is printed as a halftone on a canvas at runtime.
+        </p>
+        <p>
+          © {year} {profile.name}
+          <span aria-hidden> // </span>
           <a
             href="https://github.com/aricallen/aricallen.github.io"
             target="_blank"
             rel="noreferrer"
-            className="underline underline-offset-4 transition-colors hover:text-foreground"
+            className="link-rule rounded-xs text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             View source
           </a>
