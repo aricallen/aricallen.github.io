@@ -1,44 +1,44 @@
-import { ArrowUpRightIcon } from 'lucide-react'
+import { ArrowUpRightIcon } from 'lucide-react';
 import {
   motion,
   useMotionTemplate,
   useMotionValue,
   useReducedMotion,
   useSpring,
-} from 'motion/react'
-import type { CSSProperties, PointerEvent } from 'react'
-import { asset, type Project } from '@/lib/content'
+} from 'motion/react';
+import type { CSSProperties, PointerEvent } from 'react';
+import { asset, type Project } from '@/lib/content';
 
 type ProjectCardProps = {
-  project: Project
-  onOpen: () => void
-}
+  project: Project;
+  onOpen: () => void;
+};
 
-const springConfig = { stiffness: 180, damping: 22 }
+const springConfig = { stiffness: 180, damping: 22 };
 
 export const ProjectCard = ({ project, onOpen }: ProjectCardProps) => {
-  const reduceMotion = useReducedMotion()
-  const rotateX = useSpring(useMotionValue(0), springConfig)
-  const rotateY = useSpring(useMotionValue(0), springConfig)
-  const pointerX = useMotionValue(0)
-  const pointerY = useMotionValue(0)
-  const spotlight = useMotionTemplate`radial-gradient(340px circle at ${pointerX}px ${pointerY}px, oklch(0.75 0.15 ${project.hue} / 0.14), transparent 70%)`
+  const reduceMotion = useReducedMotion();
+  const rotateX = useSpring(useMotionValue(0), springConfig);
+  const rotateY = useSpring(useMotionValue(0), springConfig);
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const spotlight = useMotionTemplate`radial-gradient(340px circle at ${pointerX}px ${pointerY}px, oklch(0.75 0.15 ${project.hue} / 0.14), transparent 70%)`;
 
   const handlePointerMove = (event: PointerEvent<HTMLElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect()
-    const x = event.clientX - rect.left
-    const y = event.clientY - rect.top
-    pointerX.set(x)
-    pointerY.set(y)
-    if (reduceMotion) return
-    rotateY.set((x / rect.width - 0.5) * 8)
-    rotateX.set((y / rect.height - 0.5) * -8)
-  }
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    pointerX.set(x);
+    pointerY.set(y);
+    if (reduceMotion) return;
+    rotateY.set((x / rect.width - 0.5) * 8);
+    rotateX.set((y / rect.height - 0.5) * -8);
+  };
 
   const handlePointerLeave = () => {
-    rotateX.set(0)
-    rotateY.set(0)
-  }
+    rotateX.set(0);
+    rotateY.set(0);
+  };
 
   return (
     <motion.article
@@ -63,7 +63,10 @@ export const ProjectCard = ({ project, onOpen }: ProjectCardProps) => {
           loading="lazy"
           className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/8 bg-gradient-to-t from-card/70 to-transparent" />
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-card/40 to-transparent"
+        />
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-5">
@@ -104,5 +107,5 @@ export const ProjectCard = ({ project, onOpen }: ProjectCardProps) => {
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
       />
     </motion.article>
-  )
-}
+  );
+};
