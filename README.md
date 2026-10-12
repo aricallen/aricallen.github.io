@@ -22,6 +22,7 @@ All copy renders from **`src/content/portfolio.json`** — edit it and the UI up
 | `stats` | Animated count-up strip (`value` + `suffix`, e.g. `54` + `"%"`) |
 | `skills` | Scrolling tech marquee (`expert` + `experienced` are shown) |
 | `projects` | Card grid and the fullscreen detail view |
+| `testimonials` | Quote cards under the projects. Attributed by `role` + `org`; add `name` only with the person's OK |
 | `resume` | The `/resume` page. Mirrors the single-column resume build; keep them in sync, and replace `public/resume.pdf` when the resume changes |
 
 Per project:

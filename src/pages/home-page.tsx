@@ -4,6 +4,7 @@ import { Hero } from '@/components/hero'
 import { ProjectsSection } from '@/components/projects-section'
 import { SkillsMarquee } from '@/components/skills-marquee'
 import { StatsStrip } from '@/components/stats-strip'
+import { TestimonialsSection } from '@/components/testimonials-section'
 
 export const HomePage = () => {
   const { hash } = useLocation()
@@ -20,6 +21,7 @@ export const HomePage = () => {
       <StatsStrip />
       <SkillsMarquee />
       <ProjectsSection />
+      <TestimonialsSection />
     </>
   )
 }
