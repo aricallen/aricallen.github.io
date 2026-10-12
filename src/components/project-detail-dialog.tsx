@@ -1,6 +1,8 @@
 import { Dialog as DialogPrimitive } from '@base-ui/react/dialog'
-import { CheckIcon, ExternalLinkIcon, XIcon } from 'lucide-react'
-import { type CSSProperties, useRef } from 'react'
+import { ArrowLeftIcon } from 'lucide-react'
+import { useRef } from 'react'
+import { Block } from '@/components/block'
+import { ProjectMediaGallery } from '@/components/project-media-gallery'
 import {
   Dialog,
   DialogClose,
@@ -9,10 +11,6 @@ import {
   DialogPortal,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
-import { ProjectMediaGallery } from '@/components/project-media-gallery'
 import { asset, type Project } from '@/lib/content'
 
 type ProjectDetailDialogProps = {
@@ -21,6 +19,7 @@ type ProjectDetailDialogProps = {
   onOpenChange: (open: boolean) => void
 }
 
+/** Full-screen project page: back button, big lowercase title, `role / date / team / my part` list, then the story. */
 export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDetailDialogProps) => {
   const closeRef = useRef<HTMLButtonElement>(null)
 
@@ -29,147 +28,95 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogPortal>
-        <DialogOverlay className="bg-black/40 supports-backdrop-filter:backdrop-blur-sm" />
+        <DialogOverlay className="bg-background/70 supports-backdrop-filter:backdrop-blur-sm" />
         <DialogPrimitive.Popup
           // The default (first tabbable element) is a gallery image, which scrolls the dialog past the overview.
           initialFocus={closeRef}
           data-slot="dialog-content"
-          style={{ '--accent-c': `oklch(0.7 0.16 ${project.hue})` } as CSSProperties}
-          className="fixed inset-2 z-50 overflow-hidden rounded-2xl bg-background ring-1 ring-foreground/15 outline-none sm:inset-6 lg:inset-x-16 lg:inset-y-10 motion-safe:data-open:animate-flip-in motion-safe:data-closed:animate-flip-out motion-reduce:duration-100 motion-reduce:data-open:animate-in motion-reduce:data-open:fade-in-0 motion-reduce:data-closed:animate-out motion-reduce:data-closed:fade-out-0"
+          className="fixed inset-0 z-50 overflow-y-auto overscroll-contain bg-background outline-none motion-safe:data-open:animate-slide-up motion-safe:data-closed:animate-slide-down motion-reduce:duration-100 motion-reduce:data-open:animate-in motion-reduce:data-open:fade-in-0 motion-reduce:data-closed:animate-out motion-reduce:data-closed:fade-out-0"
         >
-          <div className="h-full overflow-y-auto overscroll-contain">
-            <div className="relative aspect-[21/9] max-h-80 w-full overflow-hidden">
-              <img
-                src={asset(project.image)}
-                alt={`Screenshot of ${project.title}`}
-                className="size-full object-cover"
-              />
-              <div
-                aria-hidden
-                className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent"
-              />
-            </div>
+          <div aria-hidden className="bg-matrix pointer-events-none fixed inset-0 opacity-70" />
+          <div className="relative mx-auto flex w-full max-w-[1400px] flex-col gap-12 px-5 pt-8 pb-24 sm:px-8 sm:pt-10">
+            <DialogClose
+              ref={closeRef}
+              className="flex size-10 items-center justify-center rounded-full bg-foreground text-background outline-none transition-transform hover:-translate-x-0.5 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              <ArrowLeftIcon className="size-4" />
+              <span className="sr-only">Back to work</span>
+            </DialogClose>
 
-            <div className="mx-auto max-w-4xl px-5 pt-2 pb-12 sm:px-8">
-              <p className="font-mono text-sm tracking-wide text-muted-foreground">
-                <span className="text-(--accent-c)">{project.org}</span> · {project.period}
-              </p>
-              <DialogTitle className="mt-2 font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
-                {project.title}
-              </DialogTitle>
-              <DialogDescription className="mt-3 max-w-2xl text-base">{project.summary}</DialogDescription>
+            <DialogTitle className="headline text-[clamp(2.5rem,8vw,6.5rem)]">{project.title}</DialogTitle>
 
-              <Separator className="my-8" />
+            <div className="grid grid-cols-1 gap-x-10 gap-y-12 lg:grid-cols-2">
+              <dl className="grid grid-cols-[6rem_1fr] gap-x-6 gap-y-4 self-start text-[15px] leading-relaxed">
+                <dt className="block-label">role</dt>
+                <dd>{project.details.role}</dd>
+                <dt className="block-label">date</dt>
+                <dd>{project.period}</dd>
+                <dt className="block-label">team</dt>
+                <dd>{project.org}</dd>
+                <dt className="block-label">stack</dt>
+                <dd>{project.details.stack.join(', ')}</dd>
+                <dt className="block-label">my part</dt>
+                <dd>
+                  <ul className="flex flex-col gap-1">
+                    {project.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                </dd>
+              </dl>
 
-              <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr]">
-                <div className="flex flex-col gap-8">
-                  <section aria-labelledby={`${project.id}-overview`}>
-                    <h3
-                      id={`${project.id}-overview`}
-                      className="mb-3 font-mono text-sm tracking-widest text-muted-foreground uppercase"
-                    >
-                      Overview
-                    </h3>
-                    <p className="leading-relaxed">{project.details.overview}</p>
-                  </section>
-                  <section aria-labelledby={`${project.id}-outcomes`}>
-                    <h3
-                      id={`${project.id}-outcomes`}
-                      className="mb-3 font-mono text-sm tracking-widest text-muted-foreground uppercase"
-                    >
-                      Outcomes
-                    </h3>
-                    <ul className="flex flex-col gap-3">
-                      {project.details.outcomes.map((outcome) => (
-                        <li key={outcome} className="flex items-start gap-3">
-                          <CheckIcon aria-hidden className="mt-1 size-4 shrink-0 text-(--accent-c)" />
-                          <span className="leading-relaxed">{outcome}</span>
+              <div className="flex flex-col gap-10 lg:pt-24">
+                <Block label="overview" as="h3">
+                  <DialogDescription className="sr-only">{project.summary}</DialogDescription>
+                  <p className="text-pretty">{project.details.overview}</p>
+                </Block>
+                <Block label="outcomes" as="h3">
+                  <ul className="flex flex-col gap-3">
+                    {project.details.outcomes.map((outcome, i) => (
+                      <li key={outcome} className="grid grid-cols-[2rem_1fr] gap-2">
+                        <span aria-hidden className="text-muted-foreground tabular-nums">
+                          {String(i + 1).padStart(2, '0')}
+                        </span>
+                        <span className="text-pretty">{outcome}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Block>
+                {project.details.links.length > 0 && (
+                  <Block label="links" as="h3">
+                    <ul className="flex flex-col gap-1">
+                      {project.details.links.map((link) => (
+                        <li key={link.url}>
+                          <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="link-dotted rounded-xs outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          >
+                            {link.label} ↗
+                          </a>
                         </li>
                       ))}
                     </ul>
-                  </section>
-                </div>
-
-                <aside className="flex h-fit flex-col gap-6 rounded-xl bg-card p-5 ring-1 ring-foreground/10">
-                  <section aria-labelledby={`${project.id}-role`}>
-                    <h3
-                      id={`${project.id}-role`}
-                      className="mb-2 font-mono text-xs tracking-widest text-muted-foreground uppercase"
-                    >
-                      Role
-                    </h3>
-                    <p className="text-sm leading-relaxed">{project.details.role}</p>
-                  </section>
-                  <section aria-labelledby={`${project.id}-stack`}>
-                    <h3
-                      id={`${project.id}-stack`}
-                      className="mb-2 font-mono text-xs tracking-widest text-muted-foreground uppercase"
-                    >
-                      Stack
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.details.stack.map((tech) => (
-                        <Badge key={tech} variant="secondary" className="font-mono">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </section>
-                  {project.details.links.length > 0 && (
-                    <section aria-labelledby={`${project.id}-links`}>
-                      <h3
-                        id={`${project.id}-links`}
-                        className="mb-2 font-mono text-xs tracking-widest text-muted-foreground uppercase"
-                      >
-                        Links
-                      </h3>
-                      <div className="flex flex-col gap-2">
-                        {project.details.links.map((link) => (
-                          <Button
-                            key={link.url}
-                            variant="outline"
-                            size="sm"
-                            className="justify-start"
-                            nativeButton={false}
-                            render={<a href={link.url} target="_blank" rel="noreferrer" />}
-                          >
-                            <ExternalLinkIcon data-icon="inline-start" />
-                            {link.label}
-                          </Button>
-                        ))}
-                      </div>
-                    </section>
-                  )}
-                </aside>
+                  </Block>
+                )}
               </div>
-
-              {project.details.media.length > 0 && (
-                <section aria-labelledby={`${project.id}-gallery`} className="mt-12">
-                  <h3
-                    id={`${project.id}-gallery`}
-                    className="mb-4 font-mono text-sm tracking-widest text-muted-foreground uppercase"
-                  >
-                    In action
-                  </h3>
-                  <ProjectMediaGallery media={project.details.media} />
-                </section>
-              )}
             </div>
-          </div>
 
-          <DialogClose
-            ref={closeRef}
-            render={
-              <Button
-                variant="secondary"
-                size="icon"
-                className="absolute top-4 right-4 shadow-md ring-1 ring-foreground/10"
+            {project.details.media.length > 0 ? (
+              <Block label="in action" as="h3">
+                <ProjectMediaGallery media={project.details.media} />
+              </Block>
+            ) : (
+              <img
+                src={asset(project.image)}
+                alt={`Screenshot of ${project.title}`}
+                className="w-full rounded-2xl ring-1 ring-foreground/10"
               />
-            }
-          >
-            <XIcon />
-            <span className="sr-only">Close project details</span>
-          </DialogClose>
+            )}
+          </div>
         </DialogPrimitive.Popup>
       </DialogPortal>
     </Dialog>

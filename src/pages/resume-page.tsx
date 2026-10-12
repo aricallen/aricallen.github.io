@@ -1,46 +1,32 @@
-import { DownloadIcon, MapPinIcon } from 'lucide-react'
-import { motion } from 'motion/react'
-import type { ReactNode } from 'react'
-import { SocialIcon } from '@/components/brand-icons'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { Block } from '@/components/block'
+import { Panel, PanelItem } from '@/components/panel'
+import { rise } from '@/lib/motion'
 import { asset, content, type ResumeEntry } from '@/lib/content'
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
-}
 
 /** Show the bare address ("github.com/aricallen") rather than the full URL. */
 const displayUrl = (url: string) => url.replace(/^(mailto:|https?:\/\/(www\.)?)/, '').replace(/\/$/, '')
 
-const SectionHeading = ({ id, children }: { id: string; children: ReactNode }) => (
-  <h2 id={id} className="mb-5 font-mono text-sm tracking-widest text-muted-foreground uppercase">
-    {children}
-  </h2>
-)
+const linkClass =
+  'link-dotted rounded-xs outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring'
 
 const ExperienceEntry = ({ entry }: { entry: ResumeEntry }) => (
-  <li className="relative pl-8">
-    <span aria-hidden className="absolute top-2 -left-[5px] size-2.5 rounded-full bg-primary ring-4 ring-background" />
-    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-      <h3 className="font-heading text-xl font-semibold">
-        {entry.company}
-        <span className="font-normal text-muted-foreground"> · {entry.role}</span>
+  <li className="grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-[9rem_1fr]">
+    <p className="block-label normal-case">{entry.dates}</p>
+    <div className="flex flex-col gap-2">
+      <h3 className="headline text-xl normal-case sm:text-2xl">
+        {entry.company} <span className="font-mono text-sm font-normal text-muted-foreground">· {entry.role}</span>
       </h3>
-      <p className="font-mono text-sm text-muted-foreground">{entry.dates}</p>
+      <ul className="flex flex-col gap-1.5">
+        {entry.bullets.map((bullet) => (
+          <li key={bullet} className="grid grid-cols-[1rem_1fr] gap-1 text-pretty">
+            <span aria-hidden className="text-muted-foreground">
+              –
+            </span>
+            <span>{bullet}</span>
+          </li>
+        ))}
+      </ul>
     </div>
-    <ul className="mt-3 flex flex-col gap-2">
-      {entry.bullets.map((bullet) => (
-        <li key={bullet} className="flex gap-2 leading-relaxed">
-          <span aria-hidden className="text-primary">
-            ▹
-          </span>
-          <span className="text-muted-foreground">{bullet}</span>
-        </li>
-      ))}
-    </ul>
   </li>
 )
 
@@ -48,99 +34,90 @@ export const ResumePage = () => {
   const { profile, resume } = content
 
   return (
-    <div className="mx-auto max-w-6xl px-4 pt-32 pb-20 sm:px-6 sm:pt-40">
-      <motion.header
-        {...fadeUp}
-        className="flex flex-col gap-6 border-b border-border/60 pb-10 md:flex-row md:items-end md:justify-between"
-      >
-        <div>
-          <p className="mb-2 font-mono text-sm text-primary">// resume</p>
-          <h1 className="font-heading text-5xl font-semibold tracking-tight sm:text-6xl">{profile.name}</h1>
-          <p className="mt-2 font-heading text-2xl font-medium text-gradient sm:text-3xl">{resume.title}</p>
-          <p className="mt-4 font-mono text-sm text-muted-foreground italic">“{profile.quote}”</p>
-          <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
-            <li className="flex items-center gap-1.5">
-              <MapPinIcon aria-hidden className="size-4" />
-              {profile.location}
-            </li>
-            {profile.links.map((link) => (
-              <li key={link.label}>
-                <a
-                  href={link.url}
-                  target={link.url.startsWith('http') ? '_blank' : undefined}
-                  rel="noreferrer"
-                  className="flex items-center gap-1.5 underline-offset-4 transition-colors hover:text-foreground hover:underline [&_svg]:size-4"
-                >
-                  <SocialIcon icon={link.icon} />
-                  {displayUrl(link.url)}
-                </a>
+    <Panel title="resume">
+      <div className="grid grid-cols-1 gap-x-10 gap-y-12 lg:grid-cols-3 lg:gap-y-16">
+        <PanelItem variants={rise} className="lg:col-span-2">
+          <Block label="tldr">
+            <div className="flex flex-col gap-3">
+              <p className="headline text-xl normal-case sm:text-2xl">
+                {profile.name} · {resume.title}
+              </p>
+              <ul className="flex flex-col gap-1.5">
+                {resume.highlights.map((highlight) => (
+                  <li key={highlight} className="grid grid-cols-[1rem_1fr] gap-1 text-pretty">
+                    <span aria-hidden className="text-muted-foreground">
+                      –
+                    </span>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Block>
+        </PanelItem>
+
+        <PanelItem variants={rise}>
+          <Block label="reach me">
+            <ul className="flex flex-col gap-2">
+              <li className="flex flex-wrap items-baseline gap-x-3">
+                <span className="w-20 text-muted-foreground">based in</span>
+                <span>{profile.location}</span>
               </li>
-            ))}
-          </ul>
-        </div>
-        <Button
-          size="lg"
-          className="w-fit"
-          nativeButton={false}
-          render={<a href={asset(profile.resumeUrl)} download={`${profile.name} Resume.pdf`} />}
-        >
-          <DownloadIcon data-icon="inline-start" />
-          Download PDF
-        </Button>
-      </motion.header>
-
-      <div className="mt-12 grid gap-12 lg:grid-cols-[1.7fr_1fr]">
-        <motion.section {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} aria-labelledby="experience">
-          <SectionHeading id="experience">Experience</SectionHeading>
-          <ol className="flex flex-col gap-10 border-l border-border">
-            {resume.experience.map((entry) => (
-              <ExperienceEntry key={entry.company} entry={entry} />
-            ))}
-          </ol>
-        </motion.section>
-
-        <motion.aside {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.2 }} className="flex flex-col gap-10">
-          <section aria-labelledby="highlights" className="rounded-xl bg-card p-5 ring-1 ring-foreground/10">
-            <SectionHeading id="highlights">Highlights</SectionHeading>
-            <ul className="flex flex-col gap-3 text-sm leading-relaxed">
-              {resume.highlights.map((highlight) => (
-                <li key={highlight} className="flex gap-2">
-                  <span aria-hidden className="text-primary">
-                    ▹
-                  </span>
-                  <span className="text-muted-foreground">{highlight}</span>
+              {profile.links.map((link) => (
+                <li key={link.label} className="flex flex-wrap items-baseline gap-x-3">
+                  <span className="w-20 text-muted-foreground">{link.label.toLowerCase()}</span>
+                  <a
+                    href={link.url}
+                    target={link.url.startsWith('http') ? '_blank' : undefined}
+                    rel="noreferrer"
+                    className={linkClass}
+                  >
+                    {displayUrl(link.url)}
+                  </a>
                 </li>
               ))}
+              <li className="flex flex-wrap items-baseline gap-x-3">
+                <span className="w-20 text-muted-foreground">pdf</span>
+                <a href={asset(profile.resumeUrl)} download={`${profile.name} Resume.pdf`} className={linkClass}>
+                  Download ↓
+                </a>
+              </li>
             </ul>
-          </section>
+          </Block>
+        </PanelItem>
 
-          <section aria-labelledby="skills">
-            <SectionHeading id="skills">Skills</SectionHeading>
-            <div className="flex flex-col gap-5">
+        <PanelItem variants={rise} className="lg:col-span-3">
+          <Block label="experience">
+            <ol className="flex flex-col gap-10">
+              {resume.experience.map((entry) => (
+                <ExperienceEntry key={`${entry.company}-${entry.dates}`} entry={entry} />
+              ))}
+            </ol>
+          </Block>
+        </PanelItem>
+
+        <PanelItem variants={rise} className="lg:col-span-2">
+          <Block label="skills">
+            <dl className="flex flex-col gap-4">
               {resume.skills.map((group) => (
-                <div key={group.label}>
-                  <h3 className="mb-2 text-sm font-medium">{group.label}</h3>
-                  <div className="flex flex-wrap gap-1.5">
-                    {group.items.map((skill) => (
-                      <Badge key={skill} variant="secondary" className="font-mono">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
+                <div key={group.label} className="flex flex-col gap-1">
+                  <dt className="block-label">{group.label}</dt>
+                  <dd className="text-pretty">{group.items.join(', ')}</dd>
                 </div>
               ))}
-            </div>
-          </section>
+            </dl>
+          </Block>
+        </PanelItem>
 
-          <section aria-labelledby="education">
-            <SectionHeading id="education">Education</SectionHeading>
-            <p className="font-medium">{resume.education.degree}</p>
-            <p className="text-sm text-muted-foreground">
-              {resume.education.school} · <span className="font-mono">{resume.education.dates}</span>
+        <PanelItem variants={rise}>
+          <Block label="education">
+            <p>{resume.education.school}</p>
+            <p className="text-muted-foreground">
+              {resume.education.degree} · {resume.education.dates}
             </p>
-          </section>
-        </motion.aside>
+          </Block>
+        </PanelItem>
       </div>
-    </div>
+    </Panel>
   )
 }
