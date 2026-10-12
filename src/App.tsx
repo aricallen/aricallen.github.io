@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate, Outlet, RouterProvider, ScrollRestoratio
 import { Background } from '@/components/background'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { StatusBar } from '@/components/status-bar'
 import { HomePage } from '@/pages/home-page'
 import { ResumePage } from '@/pages/resume-page'
 
@@ -15,6 +16,7 @@ const Layout = () => (
         <Outlet />
       </main>
       <SiteFooter />
+      <StatusBar />
     </div>
     <ScrollRestoration />
   </MotionConfig>

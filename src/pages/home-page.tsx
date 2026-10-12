@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router'
+import { AboutSection } from '@/components/about-section'
+import { ContactSection } from '@/components/contact-section'
 import { Hero } from '@/components/hero'
 import { ProjectsSection } from '@/components/projects-section'
-import { SkillsMarquee } from '@/components/skills-marquee'
-import { StatsStrip } from '@/components/stats-strip'
 import { TestimonialsSection } from '@/components/testimonials-section'
 
 export const HomePage = () => {
@@ -18,10 +18,10 @@ export const HomePage = () => {
   return (
     <>
       <Hero />
-      <StatsStrip />
-      <SkillsMarquee />
+      <AboutSection />
       <ProjectsSection />
       <TestimonialsSection />
+      <ContactSection />
     </>
   )
 }
