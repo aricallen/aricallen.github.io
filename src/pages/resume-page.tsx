@@ -23,10 +23,7 @@ const SectionHeading = ({ id, children }: { id: string; children: ReactNode }) =
 
 const ExperienceEntry = ({ entry }: { entry: ResumeEntry }) => (
   <li className="relative pl-8">
-    <span
-      aria-hidden
-      className="absolute top-2 -left-[5px] size-2.5 rounded-full bg-primary ring-4 ring-background"
-    />
+    <span aria-hidden className="absolute top-2 -left-[5px] size-2.5 rounded-full bg-primary ring-4 ring-background" />
     <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
       <h3 className="font-heading text-xl font-semibold">
         {entry.company}
@@ -52,7 +49,10 @@ export const ResumePage = () => {
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-32 pb-20 sm:px-6 sm:pt-40">
-      <motion.header {...fadeUp} className="flex flex-col gap-6 border-b border-border/60 pb-10 md:flex-row md:items-end md:justify-between">
+      <motion.header
+        {...fadeUp}
+        className="flex flex-col gap-6 border-b border-border/60 pb-10 md:flex-row md:items-end md:justify-between"
+      >
         <div>
           <p className="mb-2 font-mono text-sm text-primary">// resume</p>
           <h1 className="font-heading text-5xl font-semibold tracking-tight sm:text-6xl">{profile.name}</h1>

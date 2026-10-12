@@ -44,7 +44,10 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
                 alt={`Screenshot of ${project.title}`}
                 className="size-full object-cover"
               />
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent"
+              />
             </div>
 
             <div className="mx-auto max-w-4xl px-5 pt-2 pb-12 sm:px-8">
@@ -54,22 +57,26 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
               <DialogTitle className="mt-2 font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
                 {project.title}
               </DialogTitle>
-              <DialogDescription className="mt-3 max-w-2xl text-base">
-                {project.summary}
-              </DialogDescription>
+              <DialogDescription className="mt-3 max-w-2xl text-base">{project.summary}</DialogDescription>
 
               <Separator className="my-8" />
 
               <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr]">
                 <div className="flex flex-col gap-8">
                   <section aria-labelledby={`${project.id}-overview`}>
-                    <h3 id={`${project.id}-overview`} className="mb-3 font-mono text-sm tracking-widest text-muted-foreground uppercase">
+                    <h3
+                      id={`${project.id}-overview`}
+                      className="mb-3 font-mono text-sm tracking-widest text-muted-foreground uppercase"
+                    >
                       Overview
                     </h3>
                     <p className="leading-relaxed">{project.details.overview}</p>
                   </section>
                   <section aria-labelledby={`${project.id}-outcomes`}>
-                    <h3 id={`${project.id}-outcomes`} className="mb-3 font-mono text-sm tracking-widest text-muted-foreground uppercase">
+                    <h3
+                      id={`${project.id}-outcomes`}
+                      className="mb-3 font-mono text-sm tracking-widest text-muted-foreground uppercase"
+                    >
                       Outcomes
                     </h3>
                     <ul className="flex flex-col gap-3">
@@ -85,13 +92,19 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
 
                 <aside className="flex h-fit flex-col gap-6 rounded-xl bg-card p-5 ring-1 ring-foreground/10">
                   <section aria-labelledby={`${project.id}-role`}>
-                    <h3 id={`${project.id}-role`} className="mb-2 font-mono text-xs tracking-widest text-muted-foreground uppercase">
+                    <h3
+                      id={`${project.id}-role`}
+                      className="mb-2 font-mono text-xs tracking-widest text-muted-foreground uppercase"
+                    >
                       Role
                     </h3>
                     <p className="text-sm leading-relaxed">{project.details.role}</p>
                   </section>
                   <section aria-labelledby={`${project.id}-stack`}>
-                    <h3 id={`${project.id}-stack`} className="mb-2 font-mono text-xs tracking-widest text-muted-foreground uppercase">
+                    <h3
+                      id={`${project.id}-stack`}
+                      className="mb-2 font-mono text-xs tracking-widest text-muted-foreground uppercase"
+                    >
                       Stack
                     </h3>
                     <div className="flex flex-wrap gap-1.5">
@@ -104,7 +117,10 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
                   </section>
                   {project.details.links.length > 0 && (
                     <section aria-labelledby={`${project.id}-links`}>
-                      <h3 id={`${project.id}-links`} className="mb-2 font-mono text-xs tracking-widest text-muted-foreground uppercase">
+                      <h3
+                        id={`${project.id}-links`}
+                        className="mb-2 font-mono text-xs tracking-widest text-muted-foreground uppercase"
+                      >
                         Links
                       </h3>
                       <div className="flex flex-col gap-2">
@@ -129,7 +145,10 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
 
               {project.details.media.length > 0 && (
                 <section aria-labelledby={`${project.id}-gallery`} className="mt-12">
-                  <h3 id={`${project.id}-gallery`} className="mb-4 font-mono text-sm tracking-widest text-muted-foreground uppercase">
+                  <h3
+                    id={`${project.id}-gallery`}
+                    className="mb-4 font-mono text-sm tracking-widest text-muted-foreground uppercase"
+                  >
                     In action
                   </h3>
                   <ProjectMediaGallery media={project.details.media} />

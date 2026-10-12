@@ -72,13 +72,14 @@ export const Hero = () => {
   const { profile } = content
 
   return (
-    <section id="about" aria-label="Introduction" className="relative mx-auto max-w-6xl px-4 pt-36 pb-20 sm:px-6 sm:pt-44">
+    <section
+      id="about"
+      aria-label="Introduction"
+      className="relative mx-auto max-w-6xl px-4 pt-36 pb-20 sm:px-6 sm:pt-44"
+    >
       <div className="grid items-center gap-12 lg:grid-cols-[1.4fr_1fr]">
         <motion.div variants={container} initial="hidden" animate="visible">
-          <motion.p
-            variants={item}
-            className="mb-4 flex items-center gap-1.5 font-mono text-sm text-muted-foreground"
-          >
+          <motion.p variants={item} className="mb-4 flex items-center gap-1.5 font-mono text-sm text-muted-foreground">
             <MapPinIcon aria-hidden className="size-3.5 text-primary" />
             {profile.location}
           </motion.p>
@@ -88,13 +89,13 @@ export const Hero = () => {
           >
             {profile.name}
           </motion.h1>
-          <motion.p
-            variants={item}
-            className="mt-3 font-heading text-2xl font-medium sm:text-3xl"
-          >
+          <motion.p variants={item} className="mt-3 font-heading text-2xl font-medium sm:text-3xl">
             <RotatingRole roles={profile.roles} />
           </motion.p>
-          <motion.p variants={item} className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <motion.p
+            variants={item}
+            className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+          >
             {profile.bio}
           </motion.p>
           <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-3">
@@ -106,7 +107,10 @@ export const Hero = () => {
               Resume
             </Button>
           </motion.div>
-          <motion.blockquote variants={item} className="mt-10 border-l-2 border-primary/50 pl-4 font-mono text-sm text-muted-foreground italic">
+          <motion.blockquote
+            variants={item}
+            className="mt-10 border-l-2 border-primary/50 pl-4 font-mono text-sm text-muted-foreground italic"
+          >
             “{profile.quote}”
           </motion.blockquote>
         </motion.div>

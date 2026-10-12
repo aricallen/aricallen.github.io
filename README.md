@@ -16,14 +16,14 @@ pnpm lint      # oxlint
 
 All copy renders from **`src/content/portfolio.json`** — edit it and the UI updates; no component changes needed. Types live in `src/lib/content.ts`.
 
-| Key | What it drives |
-| --- | --- |
-| `profile` | Hero: name, cycling roles, bio, quote, avatar, social links, floating tech `chips` (first 6 form the inner ring; the rest show from `sm` up), `resumeUrl` (the PDF under `public/`) |
-| `stats` | Animated count-up strip (`value` + `suffix`, e.g. `54` + `"%"`) |
-| `skills` | Scrolling tech marquee (`expert` + `experienced` are shown) |
-| `projects` | Card grid and the fullscreen detail view |
-| `testimonials` | Quote cards under the projects. Attributed by `role` + `org`; add `name` only with the person's OK |
-| `resume` | The `/resume` page. Mirrors the single-column resume build; keep them in sync, and replace `public/resume.pdf` when the resume changes |
+| Key            | What it drives                                                                                                                                                                      |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `profile`      | Hero: name, cycling roles, bio, quote, avatar, social links, floating tech `chips` (first 6 form the inner ring; the rest show from `sm` up), `resumeUrl` (the PDF under `public/`) |
+| `stats`        | Animated count-up strip (`value` + `suffix`, e.g. `54` + `"%"`)                                                                                                                     |
+| `skills`       | Scrolling tech marquee (`expert` + `experienced` are shown)                                                                                                                         |
+| `projects`     | Card grid and the fullscreen detail view                                                                                                                                            |
+| `testimonials` | Quote cards under the projects. Attributed by `role` + `org`; add `name` only with the person's OK                                                                                  |
+| `resume`       | The `/resume` page. Mirrors the single-column resume build; keep them in sync, and replace `public/resume.pdf` when the resume changes                                              |
 
 Per project:
 
