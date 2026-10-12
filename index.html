@@ -8,7 +8,7 @@
       name="description"
       content="Aric Allen — Senior Software Engineer II in Oakland, CA. 10+ years building polished, accessible frontends: AI agent workspaces, MCP apps, and design systems."
     />
-    <meta name="theme-color" content="#14161f" />
+    <meta name="theme-color" content="#fffdfb" />
     <meta name="robots" content="noindex, nofollow" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://aricallen.github.io/" />
@@ -32,6 +32,14 @@
             ? 'dark'
             : 'light'
       document.documentElement.classList.toggle('dark', theme === 'dark')
+      // Looping decoration starts paused when the OS asks for reduced motion; the visitor's own choice wins.
+      const motion = localStorage.getItem('motion')
+      document.documentElement.dataset.motion =
+        motion === 'paused' || motion === 'playing'
+          ? motion
+          : matchMedia('(prefers-reduced-motion: reduce)').matches
+            ? 'paused'
+            : 'playing'
     </script>
   </head>
   <body>

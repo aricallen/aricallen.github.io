@@ -2,23 +2,24 @@ import { Dialog as DialogPrimitive } from '@base-ui/react/dialog'
 import { Maximize2Icon, XIcon } from 'lucide-react'
 import { useState } from 'react'
 import { Dialog, DialogClose, DialogOverlay, DialogPortal, DialogTitle } from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
 import { asset, type ProjectMedia } from '@/lib/content'
+import { pad } from '@/lib/format'
 
 type ProjectMediaGalleryProps = {
   media: ProjectMedia[]
+  /** Figure number of the first item, for when figures precede the gallery on the page. */
+  startAt?: number
 }
 
 type MediaFigureProps = {
   item: ProjectMedia
-  featured: boolean
+  number: number
   onExpand: () => void
 }
 
-const MediaFigure = ({ item, featured, onExpand }: MediaFigureProps) => (
-  <figure className={cn('flex flex-col gap-2', featured && 'sm:col-span-2')}>
-    <div className="overflow-hidden rounded-xl bg-muted ring-1 ring-foreground/10">
+const MediaFigure = ({ item, number, onExpand }: MediaFigureProps) => (
+  <figure className="border-b border-border p-3 sm:p-7 md:odd:border-r md:odd:last:col-span-2 md:odd:last:border-r-0">
+    <div className="mesh grain p-[5%]">
       {item.type === 'video' ? (
         <video
           src={asset(item.src)}
@@ -29,36 +30,39 @@ const MediaFigure = ({ item, featured, onExpand }: MediaFigureProps) => (
           loop
           playsInline
           preload="none"
-          className="w-full"
+          className="relative z-2 w-full rounded-lg shadow-lg"
         />
       ) : (
         <button
           type="button"
           onClick={onExpand}
-          className="group/media relative block w-full cursor-zoom-in outline-none focus-visible:ring-3 focus-visible:ring-ring/60"
+          className="group/media relative z-2 block w-full cursor-zoom-in rounded-lg"
         >
-          <img src={asset(item.src)} alt={item.alt} loading="lazy" className="w-full" />
-          <span className="absolute top-2 right-2 rounded-md bg-background/80 p-1.5 opacity-0 shadow-sm ring-1 ring-foreground/10 transition-opacity group-hover/media:opacity-100 group-focus-visible/media:opacity-100">
+          <img src={asset(item.src)} alt={item.alt} loading="lazy" className="w-full rounded-lg shadow-lg" />
+          <span className="absolute top-2 right-2 rounded-md bg-white/90 p-1.5 text-ink opacity-0 shadow-sm transition-opacity group-hover/media:opacity-100 group-focus-visible/media:opacity-100">
             <Maximize2Icon aria-hidden className="size-3.5" />
             <span className="sr-only">Expand image</span>
           </span>
         </button>
       )}
     </div>
-    <figcaption className="text-sm leading-relaxed text-muted-foreground">{item.caption}</figcaption>
+    <figcaption className="mt-4 flex gap-4 leading-relaxed">
+      <span className="type-label shrink-0 pt-0.5 text-tone-ink">Fig. {pad(number)}</span>
+      <span className="text-muted-foreground">{item.caption}</span>
+    </figcaption>
   </figure>
 )
 
-export const ProjectMediaGallery = ({ media }: ProjectMediaGalleryProps) => {
+export const ProjectMediaGallery = ({ media, startAt = 1 }: ProjectMediaGalleryProps) => {
   const [expanded, setExpanded] = useState<ProjectMedia | null>(null)
 
   if (media.length === 0) return null
 
   return (
     <>
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="-mb-px grid md:grid-cols-2">
         {media.map((item, index) => (
-          <MediaFigure key={item.src} item={item} featured={index === 0} onExpand={() => setExpanded(item)} />
+          <MediaFigure key={item.src} item={item} number={startAt + index} onExpand={() => setExpanded(item)} />
         ))}
       </div>
 
@@ -73,15 +77,13 @@ export const ProjectMediaGallery = ({ media }: ProjectMediaGalleryProps) => {
                   alt={expanded.alt}
                   className="max-h-[85vh] max-w-full rounded-lg object-contain shadow-2xl ring-1 ring-white/10"
                 />
-                <DialogTitle className="max-w-3xl text-center text-sm font-normal text-white/80">
+                <DialogTitle className="max-w-3xl text-center font-sans text-base leading-relaxed font-normal text-white/85">
                   {expanded.caption}
                 </DialogTitle>
               </>
             )}
-            <DialogClose
-              render={<Button variant="secondary" size="icon" className="absolute top-4 right-4 shadow-md" />}
-            >
-              <XIcon />
+            <DialogClose className="absolute top-4 right-4 cursor-pointer rounded-full bg-white p-2 text-ink shadow-md">
+              <XIcon aria-hidden className="size-4" />
               <span className="sr-only">Close image</span>
             </DialogClose>
           </DialogPrimitive.Popup>
