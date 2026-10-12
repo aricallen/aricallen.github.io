@@ -20,7 +20,9 @@ const Layout = () => (
       <Outlet />
     </main>
     <StatusBar />
-    <ScrollRestoration />
+    {/* Every hard load starts with the same history key, so key those by path: a refresh restores
+        its place, but a deep link doesn't inherit the scroll position of the last page loaded. */}
+    <ScrollRestoration getKey={(location) => (location.key === 'default' ? location.pathname : location.key)} />
   </MotionConfig>
 )
 
