@@ -18,5 +18,6 @@ I have recently put together a portfolio site that is hosted by github pages. I 
 - please work in a separate git worktree but ask me what to name it before creating one
 - there may be ongoing work in other worktrees that should NEVER be looked at as to avoid influencing your own work
 - do NOT communicate with agents in other sessions
+- branch off of the current `redesign-exploration` branch when creating new branch/worktrees so that the prompt is included and target this in PRs to keep `main` clean.
 - this OS does not allow some binaries such as `esbuild` so we may have to do some/all verification pieces in docker
 - if you have access to the chrome-devtools mcp, you can use that to verify your work as you go
