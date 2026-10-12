@@ -31,11 +31,21 @@ export type Skills = {
   learning: string[]
 }
 
+export type ProjectMedia = {
+  type: 'image' | 'video'
+  src: string
+  /** Video only: still frame shown before playback */
+  poster?: string
+  alt: string
+  caption: string
+}
+
 export type ProjectDetails = {
   overview: string
   role: string
   stack: string[]
   outcomes: string[]
+  media: ProjectMedia[]
   links: { label: string; url: string }[]
 }
 

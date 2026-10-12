@@ -12,6 +12,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { ProjectMediaGallery } from '@/components/project-media-gallery'
 import { asset, type Project } from '@/lib/content'
 
 type ProjectDetailDialogProps = {
@@ -37,7 +38,7 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
               <img
                 src={asset(project.image)}
                 alt={`Screenshot of ${project.title}`}
-                className="size-full object-cover"
+                className="size-full object-cover object-top"
               />
               <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
             </div>
@@ -121,6 +122,15 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
                   )}
                 </aside>
               </div>
+
+              {project.details.media.length > 0 && (
+                <section aria-labelledby={`${project.id}-gallery`} className="mt-12">
+                  <h3 id={`${project.id}-gallery`} className="mb-4 font-mono text-sm tracking-widest text-muted-foreground uppercase">
+                    In action
+                  </h3>
+                  <ProjectMediaGallery media={project.details.media} />
+                </section>
+              )}
             </div>
           </div>
 

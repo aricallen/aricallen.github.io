@@ -28,15 +28,12 @@ Per project:
 - `hue` — 0–360 oklch hue tinting that card's accent, glow, and detail view (pick distinct hues so the grid feels varied)
 - `image` — path under `public/` shown on the card and detail banner
 - `highlights` — the 3 bullets on the card face
-- `details` — fullscreen view: `overview`, `role`, `stack`, `outcomes`, optional `links`
+- `details` — fullscreen view: `overview`, `role`, `stack`, `outcomes`, `media`, optional `links`
+- `details.media` — "In action" gallery: `{ type: 'image' | 'video', src, poster?, alt, caption }`. The first item spans full width. Images open in a lightbox. Keep assets under `public/projects/<id>/` as WebP (≤1600px) and H.264 MP4 (≤1280px, no audio) with a WebP poster.
 
 ### Placeholders to replace
 
-- [ ] `public/projects/*.svg` — generated mockups; replace with real product screenshots (16:10 or wider, ~1200px). Update each project's `image` path if you change filenames.
-- [ ] `public/avatar.svg` — replace with a real photo (square, ≥512px) and update `profile.avatar`.
-- [ ] `profile.resumeUrl` — currently `"#"`. Drop a PDF in `public/` (e.g. `public/resume.pdf`) and set to `resume.pdf`, or link externally.
 - [ ] Footer "View source" URL in `src/components/site-footer.tsx` if the repo name isn't `portfolio`.
-- [ ] `public/favicon.svg` — generated monogram; replace if you want.
 
 ## Deploying to GitHub Pages
 

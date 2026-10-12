@@ -31,23 +31,57 @@
       "id": "mcp-apps",
       "title": "MCP Apps to GA",
       "org": "dbt Labs",
-      "period": "2025 — 2026",
+      "period": "2026",
       "hue": 262,
-      "image": "projects/mcp-apps.svg",
-      "summary": "Interactive MCP apps rendered inside AI hosts — from RFC to general availability.",
+      "image": "projects/mcp-apps/insight-side-pane.webp",
+      "summary": "Agent tool UIs built once and rendered in any MCP host, from my RFC to GA in about two months.",
       "highlights": [
-        "Authored the RFC and led the initiative from prototype to GA",
-        "Shipped custom UI embedded in dbt, VS Code, and Claude Desktop",
-        "Defined the rendering contract between MCP servers and host UIs"
+        "Pitched it, wrote the RFC, and owned it through GA",
+        "Shipped custom UI across the dbt platform, VS Code, and Claude Desktop",
+        "Other teams now build their own apps on the same pipeline"
       ],
       "details": {
-        "overview": "MCP Apps let servers ship rich, interactive UI that renders directly inside AI hosts. I authored the internal RFC, aligned host teams across three surfaces, and led the work from a hackweek prototype to a GA product — designing the protocol layer for how apps declare, sandbox, and render their UI.",
-        "role": "Tech lead — RFC author, protocol design, frontend implementation across three host surfaces.",
-        "stack": ["TypeScript", "React", "MCP", "Vite", "Electron"],
+        "overview": "Every rich tool result in dbt's AI surfaces, like lineage graphs and query results, was rebuilt separately for each surface. MCP Apps let a tool ship its own UI once and render it anywhere that speaks the protocol. The idea had been deferred at a team offsite; I kept pushing for it, wrote the RFC, prototyped three architectures in about two weeks, and led it to GA. The catch: dbt's web copilot doesn't speak MCP, so I built a renderer and a server-side resolver that bridge tool results into sandboxed app iframes.",
+        "role": "Lead and RFC author: architecture, the MCP apps package, host renderer, resolver, and the Insight app.",
+        "stack": ["TypeScript", "React", "MCP", "Vite", "ECharts"],
         "outcomes": [
-          "GA launch across dbt, VS Code, and Claude Desktop",
-          "Rendering contract adopted as the standard for internal MCP app development",
-          "Unblocked downstream teams to ship their own MCP apps without host changes"
+          "RFC to GA in about two months; the first app (a lineage viewer) reached production a month after the RFC",
+          "Replaced a fragile iframe handshake with a stateless result handover so apps render behind enterprise browser-security extensions",
+          "Insight app (chart, table, and SQL views of agent query results) went GA in August 2026",
+          "A teammate built a third app, agent-authored reports, on the same resolver and bundle pipeline"
+        ],
+        "media": [
+          {
+            "type": "image",
+            "src": "projects/mcp-apps/insight-side-pane.webp",
+            "alt": "dbt Wizard chat with an Insight app showing a monthly revenue line chart in a side pane",
+            "caption": "The Insight app: the agent queries the semantic layer and the result renders as an interactive chart beside the chat."
+          },
+          {
+            "type": "image",
+            "src": "projects/mcp-apps/lineage-app.webp",
+            "alt": "Chat response with an embedded lineage graph showing a model's parents and children",
+            "caption": "The first app in production: get_lineage results drawn as an interactive graph instead of a text list."
+          },
+          {
+            "type": "video",
+            "src": "projects/mcp-apps/insight-table.mp4",
+            "poster": "projects/mcp-apps/insight-table-poster.webp",
+            "alt": "Sorting and paginating a 240-row results table, then switching to a bar chart",
+            "caption": "Chart, table, and SQL views of the same result, with sorting and pagination."
+          },
+          {
+            "type": "image",
+            "src": "projects/mcp-apps/area-chart-dark.webp",
+            "alt": "Area chart of daily query volume in dark theme",
+            "caption": "Area chart, dark theme."
+          },
+          {
+            "type": "image",
+            "src": "projects/mcp-apps/scatter-tooltip-light.webp",
+            "alt": "Scatter plot of model runtime versus rows produced with a hover tooltip, light theme",
+            "caption": "Scatter chart with tooltip, light theme."
+          }
         ],
         "links": []
       }
@@ -56,23 +90,46 @@
       "id": "insights-agent",
       "title": "Insights Analysis Agent",
       "org": "dbt Labs",
-      "period": "2024 — 2025",
+      "period": "2025 — 2026",
       "hue": 305,
-      "image": "projects/insights-agent.svg",
-      "summary": "An AI data analyst with streaming responses, tool calling, and live SQL execution.",
+      "image": "projects/insights-agent/agent-beta.webp",
+      "summary": "dbt's conversational analysis agent, moved from request/response to a streaming LangGraph UI and shipped to GA.",
       "highlights": [
-        "Shipped dbt's Insights analysis agent to GA",
-        "Built streaming UI with incremental tool-call rendering",
-        "Live SQL execution with result visualization in the chat surface"
+        "Frontend owner of the agent chat UI through GA",
+        "Migrated to streaming with incremental tool-call rendering",
+        "Ran the external beta release and post-bug-bash hardening"
       ],
       "details": {
-        "overview": "Insights is dbt's conversational analysis agent: ask a question in plain English, watch it plan, write SQL, run it against your warehouse, and chart the results — all streamed token-by-token into a purpose-built chat surface. I owned the frontend: the streaming architecture, incremental rendering of tool calls, and the embedded result visualizations.",
-        "role": "Frontend lead — streaming architecture, tool-call UI, result rendering.",
-        "stack": ["TypeScript", "React", "SSE streaming", "SQL", "Recharts"],
+        "overview": "The Insights Copilot used a request/response API, so users stared at \"Thinking…\" with no sense of progress. As the backend moved to a streaming LangGraph endpoint, I reworked the chat so streamed chunks become the same messages our tool-call renderers already understood. The new path shipped as versioned components, so the old one could be removed later without touching Copilot in other apps. Along the way I added reasoning sections that grow as the agent thinks, @-mentions that pass models and files to the agent as context, and agent-run SQL that fills the query editor and results.",
+        "role": "Frontend owner: streaming chat architecture, message renderers, release gating.",
+        "stack": ["TypeScript", "React", "LangGraph", "Streaming", "Cypress"],
         "outcomes": [
-          "GA launch as a flagship AI feature of the dbt platform",
-          "Streaming patterns reused by two other agent surfaces",
-          "Sub-second first-token render on warehouse-scale queries"
+          "Reached full feature parity with the previous agent, then external beta in January 2026 and GA",
+          "A fail-closed feature gate moved existing users to the new agent without disruption",
+          "Shipped fixes for every medium-to-critical issue from the pre-launch bug bash",
+          "Built a standalone test bed to iterate against a live backend without loading the full app"
+        ],
+        "media": [
+          {
+            "type": "image",
+            "src": "projects/insights-agent/agent-beta.webp",
+            "alt": "dbt Insights with the Copilot agent panel listing semantic layer metrics",
+            "caption": "The analysis agent in Insights, listing governed metrics from the semantic layer."
+          },
+          {
+            "type": "video",
+            "src": "projects/insights-agent/streaming.mp4",
+            "poster": "projects/insights-agent/streaming-poster.webp",
+            "alt": "Agent streaming reasoning steps and tool calls, then filling a semantic layer query and results",
+            "caption": "Streaming LangGraph agent: reasoning and tool calls appear live, then the query and results fill in."
+          },
+          {
+            "type": "video",
+            "src": "projects/insights-agent/model-mentions.mp4",
+            "poster": "projects/insights-agent/model-mentions-poster.webp",
+            "alt": "Typing an @-mention of a model in the chat input and the agent answering with that model's details",
+            "caption": "@-mentioning a model passes it to the agent as context."
+          }
         ],
         "links": []
       }
@@ -81,23 +138,44 @@
       "id": "dev-agent-workspace",
       "title": "Dev-Agent Workspace",
       "org": "dbt Labs",
-      "period": "2025 — 2026",
+      "period": "2026",
       "hue": 195,
-      "image": "projects/dev-agent-workspace.svg",
-      "summary": "A full-screen workspace for reviewing AI code edits — inline diffs and DAG-level impact review.",
+      "image": "projects/dev-agent-workspace/split-pane-diff.webp",
+      "summary": "A full-screen workspace for reviewing AI code edits, with side-by-side diffs and visual DAG diffs of every change.",
       "highlights": [
-        "Frontend lead for the dev-agent workspace",
-        "Inline diff review of AI-proposed edits across many files",
-        "DAG visualization showing downstream impact of every change"
+        "Frontend lead: wrote the eng plan, ran the kickoff, built most of it",
+        "Split-pane review of agent edits with a code ⇄ Canvas toggle",
+        "Visual before/after DAG diffs for SQL changes"
       ],
       "details": {
-        "overview": "When an AI agent edits your dbt project, you need to trust the change before you ship it. This workspace gives engineers a full-screen review surface: file-by-file inline diffs of agent edits, plus a DAG view showing which downstream models each change touches — so review happens at both the code level and the dependency level.",
-        "role": "Frontend lead — workspace shell, diff rendering, DAG review integration.",
-        "stack": ["TypeScript", "React", "CodeMirror", "dagre", "Tailwind"],
+        "overview": "The dev agent's changes used to show up as small diff cards in the chat, and nothing showed what a SQL change did structurally. I took over the effort, re-planned it after my first prototype pointed the wrong way, and built a resizable side pane next to the chat: full-height diffs, chat history that shows each edit as it was at that point in the conversation, and a toggle that renders the change as a before/after DAG in Canvas, dbt's visual SQL editor.",
+        "role": "Frontend lead: eng plan, split-pane shell, DAG diff components, telemetry, release flags.",
+        "stack": ["TypeScript", "React", "React Flow", "Monaco", "Storybook"],
         "outcomes": [
-          "Became the primary review surface for agent-driven edits",
-          "Diff + DAG dual review reduced bad merges from agent changes",
-          "Workspace shell reused for two additional editor features"
+          "Launched internally in May 2026 as the default full-screen experience; public preview in July",
+          "Recovered from a launch incident with a lazy-loaded, flag-gated re-land the day after the revert",
+          "Instrumented the review flow end to end with product telemetry",
+          "Product asked to reuse the code/Canvas toggle in other parts of the platform"
+        ],
+        "media": [
+          {
+            "type": "image",
+            "src": "projects/dev-agent-workspace/split-pane-diff.webp",
+            "alt": "Agent chat on the left and a full-height code diff of its edit on the right",
+            "caption": "Split pane: the agent's edit opens full-height next to the chat, with a Code / Canvas toggle."
+          },
+          {
+            "type": "image",
+            "src": "projects/dev-agent-workspace/canvas-dag-diff.webp",
+            "alt": "Canvas view comparing the current model graph with the new graph that adds a filter step",
+            "caption": "Read-only DAG diff in Canvas: the agent's change adds a filter between the source and output."
+          },
+          {
+            "type": "image",
+            "src": "projects/dev-agent-workspace/dag-diff-storybook.webp",
+            "alt": "Storybook page for the DAG diff component showing an added node between current and new graphs",
+            "caption": "The DAG diff component in Storybook, with stories for added, removed, and new-model cases."
+          }
         ],
         "links": []
       }
@@ -106,23 +184,38 @@
       "id": "react-19-migration",
       "title": "React 19 + Compiler Migration",
       "org": "dbt Labs",
-      "period": "2024 — 2025",
+      "period": "2025 — 2026",
       "hue": 155,
-      "image": "projects/react-19-migration.svg",
+      "image": "projects/react-19-migration/auto-memo.webp",
       "summary": "Led the React 19 + Compiler migration across six repos, cutting render time by ~54%.",
       "highlights": [
-        "React rendering time cut by ~54% across the platform",
+        "React rendering time cut by ~54% with a compiled component library",
         "Unified five frontend apps into one monorepo",
         "CDN-split the editor core to fix chronic CI failures"
       ],
       "details": {
-        "overview": "A platform-wide modernization: migrate six repositories to React 19 with the React Compiler enabled, then consolidate five frontend apps into a single monorepo. Along the way I CDN-split the heavyweight editor core out of the main bundle, which eliminated a class of chronic CI failures and sped up every team's pipeline.",
-        "role": "Migration lead — planning, codemods, rollout sequencing, performance measurement.",
-        "stack": ["React 19", "React Compiler", "Turborepo", "Vite", "GitHub Actions"],
+        "overview": "dbt's frontends ran a mix of React 18 and 19, so the shared packages had to support both, and that blocked consolidating into a monorepo. I took the shared component library and app navigation to React 19 and rolled it out across six repos. Then I went past the plan's stretch goal: a compiled build of the component library (plus a legacy build so other apps kept working), compiler lint rules, and a forms overhaul that keeps form state reactive under the compiler. Separately, I moved the heavyweight Monaco/VS Code editor core out to a CDN so the editor app stopped toppling CI.",
+        "role": "Migration lead: planning, rollout across six repos, perf measurement, adoption docs.",
+        "stack": ["React 19", "React Compiler", "Vite", "ESLint", "Import maps"],
         "outcomes": [
-          "~54% reduction in React rendering time measured across key surfaces",
-          "Five apps consolidated into one monorepo with shared tooling",
-          "Chronic editor-related CI failures eliminated via CDN split"
+          "~54% less React rendering time from the compiled component library",
+          "Fixed a long-standing forms bug while making forms compiler-safe",
+          "Cleared the biggest unknown for moving the main app into the monorepo",
+          "Chronic editor-related CI failures eliminated via the CDN split"
+        ],
+        "media": [
+          {
+            "type": "image",
+            "src": "projects/react-19-migration/auto-memo.webp",
+            "alt": "React DevTools component tree with Memo badges and a tooltip saying the component was auto-memoized by the React Compiler",
+            "caption": "React DevTools after enabling the compiler: providers across the app are auto-memoized."
+          },
+          {
+            "type": "image",
+            "src": "projects/react-19-migration/compiled-output.webp",
+            "alt": "Production bundle source showing react-compiler-runtime and memo cache sentinel calls",
+            "caption": "Compiled output in the production bundle."
+          }
         ],
         "links": []
       }
@@ -130,24 +223,58 @@
     {
       "id": "design-tokens",
       "title": "Design Token Pipeline",
-      "org": "Reddit",
-      "period": "2022 — 2023",
+      "org": "dbt Labs",
+      "period": "2024 — 2025",
       "hue": 45,
-      "image": "projects/design-tokens.svg",
-      "summary": "Figma-to-npm design token pipeline powering dark mode, theming, and a brand refresh across six repos.",
+      "image": "projects/design-tokens/tokenized-dark.webp",
+      "summary": "A Figma-to-code design token pipeline that shipped dark mode company-wide and turned the brand refresh into a one-package change.",
       "highlights": [
         "Lead architect for the Figma → npm token pipeline",
-        "Enabled seamless dark mode and theming rollout",
-        "Brand refresh shipped across six repositories from one source of truth"
+        "Shipped dark mode across six repositories",
+        "Built a lint plugin and ran an org-wide token mob to drive adoption"
       ],
       "details": {
-        "overview": "Design tokens lived in Figma; the six ads repos each hardcoded their own colors. I architected a pipeline that syncs tokens from Figma into a versioned npm package — typed, themeable, and consumed everywhere. When the brand refresh and dark mode landed, they rolled out across all six repos by bumping a dependency.",
-        "role": "Lead architect — pipeline design, token schema, rollout across consuming teams.",
-        "stack": ["TypeScript", "Figma API", "Style Dictionary", "npm", "CSS variables"],
+        "overview": "Designers had light and dark variables in Figma, but code used raw Tailwind colors, so there was no way to theme the product. I built a token package that turns the Figma variable export into CSS variables and Tailwind config, layered primitive → alias → semantic, with light and dark in one file. Then I pushed it well past the planned ~10% adoption: an ESLint plugin that flags raw colors, a migration guide and office hours, a company-wide Design Token Mob, a theme preference stored per user, and a phased dark-mode rollout to customers.",
+        "role": "Lead and sole engineer on the pipeline; co-led the rollout with design.",
+        "stack": ["TypeScript", "Figma variables", "CSS variables", "Tailwind", "ESLint"],
         "outcomes": [
-          "Dark mode + brand refresh rolled out across six repositories",
-          "Single source of truth replaced per-repo hardcoded palettes",
-          "Adopted by the Frontend Guild as the standard theming path"
+          "Dark mode shipped to every customer tier in early 2025",
+          "One token source used across six repositories",
+          "The 2025 brand refresh became a color change in a single package",
+          "The token mob converted thousands of Tailwind classes to tokens"
+        ],
+        "media": [
+          {
+            "type": "image",
+            "src": "projects/design-tokens/tokenized-dark.webp",
+            "alt": "dbt run details page in dark mode with tokenized buttons and a code viewer",
+            "caption": "Tokenized buttons and links in the run details page, dark theme."
+          },
+          {
+            "type": "video",
+            "src": "projects/design-tokens/theme-provider.mp4",
+            "poster": "projects/design-tokens/theme-provider-poster.webp",
+            "alt": "Switching between light and dark themes across run history and the IDE",
+            "caption": "The ThemeProvider switching themes across the app."
+          },
+          {
+            "type": "image",
+            "src": "projects/design-tokens/dag-before.webp",
+            "alt": "Lineage graph before theme support, rendering light nodes on a dark page",
+            "caption": "Lineage graph before token support."
+          },
+          {
+            "type": "image",
+            "src": "projects/design-tokens/dag-after.webp",
+            "alt": "Lineage graph after theme support, with dark nodes matching the page",
+            "caption": "After: the graph follows the theme."
+          },
+          {
+            "type": "image",
+            "src": "projects/design-tokens/lint-rule.webp",
+            "alt": "Editor tooltip from the no-tw-color-classes lint rule flagging raw Tailwind color classes",
+            "caption": "The lint rule that flags raw Tailwind colors in the editor."
+          }
         ],
         "links": []
       }
@@ -162,18 +289,19 @@
       "summary": "Internal search platform for cross-team discovery and action on ad data.",
       "highlights": [
         "Built the internal ad search platform end to end",
-        "Collapsed a 15+ shared-package dev loop into a single step",
+        "Built BI-to-Ads data synchronization",
         "Scaled ad review microservices for new ad products"
       ],
       "details": {
-        "overview": "Ads data was scattered across systems with no unified way to find or act on it. I built an internal search platform that let any team discover ads, inspect their state, and take action — plus the local-dev tooling that collapsed a painful 15+ shared-package development loop into a single command.",
-        "role": "Full-stack engineer — search UI, API gateway integration, DX tooling.",
+        "overview": "Ads data was scattered across systems with no unified way to find or act on it. I built an internal search platform that let any team discover ads, inspect their state, and take action, plus the data sync that brought BI data into the ads systems.",
+        "role": "Full-stack engineer: search UI, API gateway integration, data sync.",
         "stack": ["TypeScript", "React", "GraphQL", "Node.js", "Kubernetes"],
         "outcomes": [
           "Cross-team ad discovery in one place, replacing tribal knowledge",
-          "Local-dev loop for shared packages reduced to a single step",
+          "BI data synchronized into ads tooling",
           "Ad review services scaled to support new ad product launches"
         ],
+        "media": [],
         "links": []
       }
     }
