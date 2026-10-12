@@ -13,7 +13,7 @@ type WorkSectionProps = {
 }
 
 const filterCell =
-  'type-label flex cursor-pointer items-center gap-2.5 border-border px-4 py-3.5 text-left transition-colors hover:bg-muted sm:px-6 aria-pressed:mesh aria-pressed:hover:bg-(--tone) max-sm:odd:border-r max-sm:nth-[-n+2]:border-b sm:not-last:border-r'
+  'type-label flex cursor-pointer items-center gap-2.5 border-border px-4 py-3.5 text-left transition-colors hover:bg-muted sm:px-6 aria-pressed:mesh aria-pressed:hover:bg-(--tone) max-xl:odd:border-r max-xl:nth-[-n+2]:border-b xl:shrink-0 xl:border-r xl:whitespace-nowrap'
 
 const ProjectTile = ({ project }: { project: Project }) => {
   const topic = topicOf(project)
@@ -52,7 +52,7 @@ export const WorkSection = ({ topicId, onTopicChange }: WorkSectionProps) => {
       />
       <SectionTitle id="work-heading">Work</SectionTitle>
 
-      <Band className="grid grid-cols-2 bg-background sm:flex">
+      <Band className="grid grid-cols-2 bg-background xl:flex">
         <button
           type="button"
           aria-pressed={topicId === null}
@@ -77,9 +77,10 @@ export const WorkSection = ({ topicId, onTopicChange }: WorkSectionProps) => {
             <span className="opacity-60">{pad(projects.filter((project) => project.topic === topic.id).length)}</span>
           </button>
         ))}
+        {/* Only wide screens have room for this beside the filters; elsewhere it is still announced. */}
         <p
           aria-live="polite"
-          className="ml-auto flex items-center px-6 text-[0.95rem] text-muted-foreground italic max-lg:hidden"
+          className="ml-auto flex items-center px-6 text-right text-[0.95rem] leading-snug text-muted-foreground italic max-[1399px]:sr-only"
         >
           {active?.blurb}
         </p>
