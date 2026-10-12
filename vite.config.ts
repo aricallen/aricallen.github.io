@@ -4,9 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-// GitHub Pages serves project sites from /<repo-name>/. Override with
-// VITE_BASE=/ if deploying to a user site (aricallen.github.io) or a custom domain.
-const base = process.env.VITE_BASE ?? '/portfolio/'
+// Served from the root of the aricallen.github.io user site. The deploy workflow
+// sets VITE_BASE=/<repo>/ if this is ever built as a project site instead.
+const base = process.env.VITE_BASE ?? '/'
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => ({
