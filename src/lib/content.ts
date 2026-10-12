@@ -11,6 +11,9 @@ export type Profile = {
   monogram: string
   roles: string[]
   location: string
+  /** IANA zone for the live clock in the status bar */
+  timeZone: string
+  /** Wrap a phrase in _underscores_ to set it in italics in the hero */
   headline: string
   bio: string
   quote: string
@@ -18,8 +21,6 @@ export type Profile = {
   /** Path under public/ to the downloadable resume PDF */
   resumeUrl: string
   links: SocialLink[]
-  /** Tech chips floating around the hero avatar */
-  chips: string[]
 }
 
 export type Stat = {
@@ -57,8 +58,6 @@ export type Project = {
   title: string
   org: string
   period: string
-  /** oklch hue (0-360) used to tint the card's glow and accents */
-  hue: number
   image: string
   summary: string
   highlights: string[]

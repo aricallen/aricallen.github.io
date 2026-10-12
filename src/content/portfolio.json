@@ -4,7 +4,8 @@
     "monogram": "aa.",
     "roles": ["Senior Software Engineer II", "Frontend Specialist", "Musician", "Serial Optimist"],
     "location": "Oakland, California",
-    "headline": "I build interfaces people love to use — and codebases people love to work in.",
+    "timeZone": "America/Los_Angeles",
+    "headline": "I build interfaces people _love to use_ — and codebases people _love to work in._",
     "bio": "Senior frontend engineer with 10+ years of shipping polished, accessible web apps — AI agent workspaces and MCP apps at dbt Labs, design systems and ads tooling at Reddit, developer platforms at Sysdig and Apple. Berklee-trained musician who brings the same ear for craft to the codebase.",
     "quote": "Be the change you want to see in the codebase.",
     "avatar": "avatar.webp",
@@ -13,20 +14,6 @@
       { "label": "GitHub", "url": "https://github.com/aricallen", "icon": "github" },
       { "label": "LinkedIn", "url": "https://www.linkedin.com/in/aricallen2/", "icon": "linkedin" },
       { "label": "Email", "url": "mailto:aric.allen2@gmail.com", "icon": "mail" }
-    ],
-    "chips": [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "MCP",
-      "PostgreSQL",
-      "GraphQL",
-      "Tailwind",
-      "Docker",
-      "Kubernetes",
-      "Python",
-      "Figma",
-      "Vite"
     ]
   },
   "stats": [
@@ -68,7 +55,6 @@
       "title": "MCP Apps to GA",
       "org": "dbt Labs",
       "period": "2026",
-      "hue": 262,
       "image": "projects/mcp-apps/insight-side-pane.webp",
       "summary": "Agent tool UIs built once and rendered in any MCP host, from my RFC to GA in about two months.",
       "highlights": [
@@ -127,7 +113,6 @@
       "title": "Insights Analysis Agent",
       "org": "dbt Labs",
       "period": "2025 — 2026",
-      "hue": 305,
       "image": "projects/insights-agent/agent-beta.webp",
       "summary": "dbt's conversational analysis agent, moved from request/response to a streaming LangGraph UI and shipped to GA.",
       "highlights": [
@@ -175,7 +160,6 @@
       "title": "Dev-Agent Workspace",
       "org": "dbt Labs",
       "period": "2026",
-      "hue": 195,
       "image": "projects/dev-agent-workspace/split-pane-diff.webp",
       "summary": "A full-screen workspace for reviewing AI code edits, with side-by-side diffs and visual DAG diffs of every change.",
       "highlights": [
@@ -221,7 +205,6 @@
       "title": "React 19 + Compiler Migration",
       "org": "dbt Labs",
       "period": "2025 — 2026",
-      "hue": 155,
       "image": "projects/react-19-migration/auto-memo.webp",
       "summary": "Led the React 19 + Compiler migration across six repos, cutting render time by ~54%.",
       "highlights": [
@@ -261,7 +244,6 @@
       "title": "Design Token Pipeline",
       "org": "dbt Labs",
       "period": "2024 — 2025",
-      "hue": 45,
       "image": "projects/design-tokens/tokenized-dark.webp",
       "summary": "A Figma-to-code design token pipeline that shipped dark mode company-wide and turned the brand refresh into a one-package change.",
       "highlights": [
@@ -320,7 +302,6 @@
       "title": "Ads Search Platform",
       "org": "Reddit",
       "period": "2022 — 2023",
-      "hue": 345,
       "image": "projects/ad-search.svg",
       "summary": "Internal search platform for cross-team discovery and action on ad data.",
       "highlights": [

@@ -1,32 +1,18 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
-@import '@fontsource-variable/inter';
-@import '@fontsource-variable/space-grotesk';
-@import '@fontsource-variable/jetbrains-mono';
+@import '@fontsource-variable/geist-mono';
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-heading: 'Space Grotesk Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', monospace;
-  --color-brand-a: var(--brand-a);
-  --color-brand-b: var(--brand-b);
-  --color-brand-c: var(--brand-c);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
+  /* Two typefaces only: a mono for everything you read, a display serif for everything you feel. */
+  --font-sans: 'Geist Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-heading: 'Instrument Serif', 'Times New Roman', Times, serif;
+  --color-signal: var(--signal);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -45,141 +31,157 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-xl: var(--radius);
+  --radius-2xl: var(--radius);
+  --radius-3xl: var(--radius);
+  --radius-4xl: var(--radius);
 }
 
+/* Paper */
 :root {
-  --background: oklch(0.985 0.004 255);
-  --foreground: oklch(0.22 0.03 268);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.03 268);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.03 268);
-  --primary: oklch(0.55 0.2 262);
-  --primary-foreground: oklch(0.99 0.002 255);
-  --secondary: oklch(0.95 0.012 258);
-  --secondary-foreground: oklch(0.3 0.035 265);
-  --muted: oklch(0.955 0.01 258);
-  --muted-foreground: oklch(0.5 0.025 262);
-  --accent: oklch(0.94 0.02 262);
-  --accent-foreground: oklch(0.3 0.05 264);
+  --background: oklch(0.955 0.006 85);
+  --foreground: oklch(0.2 0 0);
+  --card: oklch(0.975 0.005 85);
+  --card-foreground: oklch(0.2 0 0);
+  --popover: oklch(0.975 0.005 85);
+  --popover-foreground: oklch(0.2 0 0);
+  --primary: oklch(0.2 0 0);
+  --primary-foreground: oklch(0.955 0.006 85);
+  --secondary: oklch(0.91 0.006 85);
+  --secondary-foreground: oklch(0.2 0 0);
+  --muted: oklch(0.92 0.006 85);
+  --muted-foreground: oklch(0.44 0 0);
+  --accent: oklch(0.91 0.006 85);
+  --accent-foreground: oklch(0.2 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.905 0.012 258);
-  --input: oklch(0.905 0.012 258);
-  --ring: oklch(0.55 0.2 262);
-  --chart-1: oklch(0.55 0.2 262);
-  --chart-2: oklch(0.55 0.24 305);
-  --chart-3: oklch(0.65 0.13 195);
-  --chart-4: oklch(0.65 0.16 155);
-  --chart-5: oklch(0.75 0.15 65);
-  --radius: 0.75rem;
-  --brand-a: oklch(0.55 0.2 262);
-  --brand-b: oklch(0.55 0.24 305);
-  --brand-c: oklch(0.6 0.13 195);
-  --sidebar: oklch(0.97 0.006 258);
-  --sidebar-foreground: oklch(0.22 0.03 268);
-  --sidebar-primary: oklch(0.55 0.2 262);
-  --sidebar-primary-foreground: oklch(0.99 0.002 255);
-  --sidebar-accent: oklch(0.94 0.02 262);
-  --sidebar-accent-foreground: oklch(0.3 0.05 264);
-  --sidebar-border: oklch(0.905 0.012 258);
-  --sidebar-ring: oklch(0.55 0.2 262);
+  --border: oklch(0 0 0 / 28%);
+  --input: oklch(0 0 0 / 28%);
+  --ring: oklch(0.2 0 0);
+  --radius: 0rem;
+  /* The one colour the chrome is allowed: a hardware-LED orange for anything live. */
+  --signal: oklch(0.6 0.2 40);
 }
 
+/* Ink */
 .dark {
-  --background: oklch(0.165 0.022 270);
-  --foreground: oklch(0.93 0.012 260);
-  --card: oklch(0.205 0.028 268);
-  --card-foreground: oklch(0.93 0.012 260);
-  --popover: oklch(0.2 0.028 268);
-  --popover-foreground: oklch(0.93 0.012 260);
-  --primary: oklch(0.72 0.16 260);
-  --primary-foreground: oklch(0.15 0.03 265);
-  --secondary: oklch(0.26 0.032 267);
-  --secondary-foreground: oklch(0.93 0.012 260);
-  --muted: oklch(0.25 0.03 267);
-  --muted-foreground: oklch(0.71 0.025 262);
-  --accent: oklch(0.28 0.045 275);
-  --accent-foreground: oklch(0.95 0.012 260);
+  --background: oklch(0.17 0 0);
+  --foreground: oklch(0.88 0 0);
+  --card: oklch(0.2 0 0);
+  --card-foreground: oklch(0.88 0 0);
+  --popover: oklch(0.2 0 0);
+  --popover-foreground: oklch(0.88 0 0);
+  --primary: oklch(0.88 0 0);
+  --primary-foreground: oklch(0.17 0 0);
+  --secondary: oklch(0.24 0 0);
+  --secondary-foreground: oklch(0.88 0 0);
+  --muted: oklch(0.22 0 0);
+  --muted-foreground: oklch(0.66 0 0);
+  --accent: oklch(0.24 0 0);
+  --accent-foreground: oklch(0.88 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.72 0.16 260);
-  --chart-1: oklch(0.72 0.16 260);
-  --chart-2: oklch(0.68 0.2 305);
-  --chart-3: oklch(0.78 0.13 195);
-  --chart-4: oklch(0.75 0.16 155);
-  --chart-5: oklch(0.8 0.14 65);
-  --brand-a: oklch(0.72 0.17 260);
-  --brand-b: oklch(0.68 0.21 305);
-  --brand-c: oklch(0.78 0.13 195);
-  --sidebar: oklch(0.2 0.028 268);
-  --sidebar-foreground: oklch(0.93 0.012 260);
-  --sidebar-primary: oklch(0.72 0.16 260);
-  --sidebar-primary-foreground: oklch(0.15 0.03 265);
-  --sidebar-accent: oklch(0.28 0.045 275);
-  --sidebar-accent-foreground: oklch(0.95 0.012 260);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.72 0.16 260);
+  --border: oklch(1 0 0 / 24%);
+  --input: oklch(1 0 0 / 24%);
+  --ring: oklch(0.88 0 0);
+  --signal: oklch(0.74 0.17 50);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
+    @apply border-border;
   }
   html {
-    @apply font-sans scroll-smooth;
+    @apply scroll-pt-12 scroll-smooth font-sans;
+  }
+  body {
+    @apply bg-background text-sm text-foreground antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
   }
   ::selection {
-    background: color-mix(in oklch, var(--primary), transparent 65%);
+    background: var(--foreground);
+    color: var(--background);
   }
 }
 
-/* --- Brand utilities ------------------------------------------------------ */
+/* --- Type ----------------------------------------------------------------- */
 
-@utility text-gradient {
-  background-image: linear-gradient(100deg, var(--brand-a), var(--brand-b) 55%, var(--brand-c));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+@utility type-display {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+
+  & em {
+    letter-spacing: -0.035em;
+  }
 }
 
-@utility bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+@utility type-quote {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+}
+
+@utility type-label {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* [ Bracketed ] controls — the only button style on the site. */
+@utility bracket {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.3rem 0.4rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    color 0.15s;
+
+  &::before {
+    content: '[';
+    color: var(--muted-foreground);
+  }
+  &::after {
+    content: ']';
+    color: var(--muted-foreground);
+  }
+  &:hover,
+  &[aria-pressed='true'] {
+    background: var(--foreground);
+    color: var(--background);
+  }
+  &:hover::before,
+  &:hover::after,
+  &[aria-pressed='true']::before,
+  &[aria-pressed='true']::after {
+    color: inherit;
+  }
+}
+
+/* --- Dot matrix ----------------------------------------------------------- */
+
+/* Punches a dot grid out of whatever sits underneath, so an image reads as a dot matrix. */
+@utility dither-mask {
+  background-image: radial-gradient(circle, transparent 1.4px, var(--background) 2px);
+  background-size: 5px 5px;
 }
 
 /* --- Keyframes ------------------------------------------------------------ */
-
-@keyframes flip-in {
-  from {
-    opacity: 0;
-    transform: perspective(1600px) rotateY(-32deg) scale(0.88) translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: perspective(1600px) rotateY(0deg) scale(1) translateY(0);
-  }
-}
-
-@keyframes flip-out {
-  from {
-    opacity: 1;
-    transform: perspective(1600px) rotateY(0deg) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: perspective(1600px) rotateY(18deg) scale(0.94);
-  }
-}
 
 @keyframes marquee {
   to {
@@ -187,64 +189,83 @@
   }
 }
 
-@keyframes aurora-drift {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
+@keyframes develop {
+  from {
+    opacity: 1;
   }
-  33% {
-    transform: translate(4%, -6%) scale(1.1);
-  }
-  66% {
-    transform: translate(-5%, 4%) scale(0.95);
-  }
-}
-
-@keyframes float-y {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes spin-slow {
   to {
-    transform: rotate(360deg);
+    opacity: 0;
   }
 }
 
-@utility animate-flip-in {
-  animation: flip-in 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+@keyframes colorize {
+  from {
+    filter: grayscale(1) contrast(1.25);
+  }
+  to {
+    filter: grayscale(0) contrast(1);
+  }
 }
 
-@utility animate-flip-out {
-  animation: flip-out 0.25s ease-in both;
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
 }
 
 @utility animate-marquee {
-  animation: marquee 45s linear infinite;
+  animation: marquee 40s linear infinite;
 }
 
-@utility animate-aurora {
-  animation: aurora-drift 24s ease-in-out infinite;
+/* A dithered image "develops" into the real screenshot. */
+@utility animate-develop {
+  animation: develop 0.7s 0.12s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-@utility animate-float {
-  animation: float-y 5s ease-in-out infinite;
+@utility animate-colorize {
+  animation: colorize 0.7s 0.12s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-@utility animate-spin-slow {
-  animation: spin-slow 10s linear infinite;
+@utility animate-blink {
+  animation: blink 1.6s steps(1) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
-  .animate-aurora,
-  .animate-float,
-  .animate-spin-slow {
+  .animate-blink,
+  .animate-colorize {
     animation: none;
+  }
+  .animate-develop {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* --- Route transitions ---------------------------------------------------- */
+
+/* The fixed bars sit out of the page cross-fade so they don't flicker between routes. */
+.vt-header {
+  view-transition-name: site-header;
+}
+.vt-status {
+  view-transition-name: status-bar;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+}
+
+::view-transition-group(project-media) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }
