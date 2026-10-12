@@ -1,23 +1,36 @@
+import { ThemeToggle } from '@/components/theme-toggle'
 import { content } from '@/lib/content'
 
+/** Thin fixed status line at the very bottom; the dock floats above it. */
 export const SiteFooter = () => {
   const { profile } = content
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-border/60 py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-4 text-center sm:px-6">
-        <p className="font-mono text-sm text-muted-foreground italic">“{profile.quote}”</p>
-        <p className="text-sm text-muted-foreground">
-          © {year} {profile.name} · Designed & built with React, Tailwind & motion ·{' '}
+    <footer className="rule-t fixed inset-x-0 bottom-0 z-30 h-10 bg-background/80 backdrop-blur-md">
+      <div className="mx-auto flex h-full max-w-[1400px] items-center justify-between gap-4 px-5 font-mono text-xs text-muted-foreground sm:px-8">
+        <p>
+          © {year} {profile.name}
+        </p>
+        <p className="flex items-center gap-3">
+          <span className="hidden sm:inline">Built with React</span>
+          <span aria-hidden className="hidden sm:inline">
+            ·
+          </span>
+          <span className="hidden sm:inline">Hosted on GitHub Pages</span>
+          <span aria-hidden className="hidden sm:inline">
+            ·
+          </span>
           <a
             href="https://github.com/aricallen/aricallen.github.io"
             target="_blank"
             rel="noreferrer"
-            className="underline underline-offset-4 transition-colors hover:text-foreground"
+            className="link-dotted rounded-xs outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
           >
-            View source
+            Source
           </a>
+          <span aria-hidden>·</span>
+          <ThemeToggle />
         </p>
       </div>
     </footer>
