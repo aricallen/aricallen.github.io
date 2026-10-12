@@ -14,7 +14,20 @@
       { "label": "LinkedIn", "url": "https://www.linkedin.com/in/aricallen2/", "icon": "linkedin" },
       { "label": "Email", "url": "mailto:aric.allen2@gmail.com", "icon": "mail" }
     ],
-    "chips": ["React", "TypeScript", "Node.js", "MCP", "PostgreSQL", "GraphQL", "Tailwind", "Docker", "Kubernetes", "Python", "Figma", "Vite"]
+    "chips": [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "MCP",
+      "PostgreSQL",
+      "GraphQL",
+      "Tailwind",
+      "Docker",
+      "Kubernetes",
+      "Python",
+      "Figma",
+      "Vite"
+    ]
   },
   "stats": [
     { "value": 10, "suffix": "+", "label": "years of frontend engineering" },
@@ -23,8 +36,30 @@
     { "value": 6, "suffix": "+", "label": "years of full-stack engineering" }
   ],
   "skills": {
-    "expert": ["TypeScript", "React", "Node.js", "CSS", "Tailwind", "Vite", "Express", "Cypress", "React Testing Library"],
-    "experienced": ["Next.js", "MCP", "PostgreSQL", "GraphQL", "Kubernetes", "Docker", "Electron", "Figma", "Python", "shadcn/ui", "Vitest"],
+    "expert": [
+      "TypeScript",
+      "React",
+      "Node.js",
+      "CSS",
+      "Tailwind",
+      "Vite",
+      "Express",
+      "Cypress",
+      "React Testing Library"
+    ],
+    "experienced": [
+      "Next.js",
+      "MCP",
+      "PostgreSQL",
+      "GraphQL",
+      "Kubernetes",
+      "Docker",
+      "Electron",
+      "Figma",
+      "Python",
+      "shadcn/ui",
+      "Vitest"
+    ],
     "learning": ["Go", "Rust", "Machine Learning"]
   },
   "projects": [
@@ -308,12 +343,36 @@
     }
   ],
   "testimonials": [
-    { "quote": "Aric exemplifies everything we'd want from a frontend leaning engineer. I want to hire more Arics.", "role": "Staff Software Engineer", "org": "dbt Labs" },
-    { "quote": "I want Aric on my team. He breaks down problems and solves them in ways that are repeatable, ensures systems are resilient… He unblocks me constantly.", "role": "Product Designer", "org": "dbt Labs" },
-    { "quote": "Aric has built tools and processes that empower teams across the org to ship faster, more consistent, and more accessible experiences. … If you've built in dbt Cloud's frontend, chances are you've benefited from his work.", "role": "Engineering Manager", "org": "dbt Labs" },
-    { "quote": "One of our best front-end engineers. He's a strong advocate for good design and accessibility best practices… always willing to jump in and help wherever needed, even when he's swamped.", "role": "Design Lead", "org": "dbt Labs" },
-    { "quote": "He's continuously upgrading us as a team with tooling, repo management, and more… he also crushes feature work.", "role": "Software Engineer", "org": "dbt Labs" },
-    { "quote": "His work to continue pushing forward the frontend standards at the company is notable and I do not believe much of it could have been completed without him.", "role": "Software Engineer, partner team", "org": "dbt Labs" }
+    {
+      "quote": "Aric exemplifies everything we'd want from a frontend leaning engineer. I want to hire more Arics.",
+      "role": "Staff Software Engineer",
+      "org": "dbt Labs"
+    },
+    {
+      "quote": "I want Aric on my team. He breaks down problems and solves them in ways that are repeatable, ensures systems are resilient… He unblocks me constantly.",
+      "role": "Product Designer",
+      "org": "dbt Labs"
+    },
+    {
+      "quote": "Aric has built tools and processes that empower teams across the org to ship faster, more consistent, and more accessible experiences. … If you've built in dbt Cloud's frontend, chances are you've benefited from his work.",
+      "role": "Engineering Manager",
+      "org": "dbt Labs"
+    },
+    {
+      "quote": "One of our best front-end engineers. He's a strong advocate for good design and accessibility best practices… always willing to jump in and help wherever needed, even when he's swamped.",
+      "role": "Design Lead",
+      "org": "dbt Labs"
+    },
+    {
+      "quote": "He's continuously upgrading us as a team with tooling, repo management, and more… he also crushes feature work.",
+      "role": "Software Engineer",
+      "org": "dbt Labs"
+    },
+    {
+      "quote": "His work to continue pushing forward the frontend standards at the company is notable and I do not believe much of it could have been completed without him.",
+      "role": "Software Engineer, partner team",
+      "org": "dbt Labs"
+    }
   ],
   "resume": {
     "title": "Senior Software Engineer II",
@@ -383,7 +442,19 @@
     "skills": [
       {
         "label": "Expert",
-        "items": ["TypeScript", "JavaScript", "React", "Node.js", "Express", "HTML", "CSS", "Tailwind", "React Testing Library", "Cypress", "Vite"]
+        "items": [
+          "TypeScript",
+          "JavaScript",
+          "React",
+          "Node.js",
+          "Express",
+          "HTML",
+          "CSS",
+          "Tailwind",
+          "React Testing Library",
+          "Cypress",
+          "Vite"
+        ]
       },
       {
         "label": "Experienced",
@@ -412,6 +483,10 @@
         "items": ["Go", "Rust", "Data Science / Machine Learning"]
       }
     ],
-    "education": { "degree": "Bachelor of Arts, Electronic Production & Design", "school": "Berklee College of Music", "dates": "2008 — 2011" }
+    "education": {
+      "degree": "Bachelor of Arts, Electronic Production & Design",
+      "school": "Berklee College of Music",
+      "dates": "2008 — 2011"
+    }
   }
 }

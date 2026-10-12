@@ -11,11 +11,7 @@ const base = process.env.VITE_BASE ?? '/'
 // https://vite.dev/config/
 export default defineConfig(({ command }) => ({
   base: command === 'build' ? base : '/',
-  plugins: [
-    react(),
-    babel({ presets: [reactCompilerPreset()] }),
-    tailwindcss(),
-  ],
+  plugins: [react(), babel({ presets: [reactCompilerPreset()] }), tailwindcss()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
