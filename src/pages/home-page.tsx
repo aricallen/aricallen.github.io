@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router'
 import { Hero } from '@/components/hero'
+import { PlaySection } from '@/components/play-section'
 import { ProjectsSection } from '@/components/projects-section'
 import { SkillsMarquee } from '@/components/skills-marquee'
 import { StatsStrip } from '@/components/stats-strip'
@@ -21,6 +22,7 @@ export const HomePage = () => {
       <StatsStrip />
       <SkillsMarquee />
       <ProjectsSection />
+      <PlaySection />
       <TestimonialsSection />
     </>
   )

@@ -28,6 +28,8 @@ All copy renders from **`src/content/portfolio.json`** — edit it and the UI up
 | `testimonials` | Quote cards under the projects. Attributed by `role` + `org`; add `name` only with the person's OK                                                                                  |
 | `resume`       | The `/resume` page. Mirrors the single-column resume build; keep them in sync, and replace `public/resume.pdf` when the resume changes                                              |
 
+The step sequencer section ("Something to play with") has no key of its own: its copy lives in `src/components/play-section.tsx`, and the school and field of study shown under it come from `resume.education`.
+
 Per project:
 
 - `hue` — 0–360 oklch hue tinting that card's accent, glow, and detail view (pick distinct hues so the grid feels varied)
@@ -50,4 +52,5 @@ Routes use React Router. Pages has no SPA rewrites, so the workflow copies `inde
 
 - `public/og-image.jpg` is the 1200×630 link-preview card (Open Graph tags in `index.html`). Regenerate it if the name or title changes.
 - Dark/light theme follows system preference, toggleable in the header; the choice persists in `localStorage`. An inline script in `index.html` applies the class before paint to avoid a flash.
+- The step sequencer makes no sound and creates no `AudioContext` until a visitor presses play or switches a step on. Its voices are synthesised in `src/lib/sequencer-audio.ts`; there are no audio files. The grid is one tab stop: arrow keys move, Space toggles.
 - All animation respects `prefers-reduced-motion` (motion's `MotionConfig reducedMotion="user"` + CSS `motion-safe`/`motion-reduce` variants).
