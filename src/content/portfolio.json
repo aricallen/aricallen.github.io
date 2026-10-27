@@ -316,6 +316,65 @@
       }
     },
     {
+      "id": "rayse-presentation",
+      "title": "Agent Value Presentation",
+      "org": "Rayse (contract)",
+      "period": "2025",
+      "hue": 85,
+      "image": "projects/rayse-presentation/chapter-cards.webp",
+      "summary": "An animation-heavy presentation agents walk buyers through at open houses to show the work behind every step of a purchase.",
+      "highlights": [
+        "Built the interactive presentation app on contract",
+        "Scroll-driven GSAP animation across every chapter",
+        "Turns an agent's checklist into milestones and outcomes a buyer can explore"
+      ],
+      "details": {
+        "overview": "Rayse gives agents a structured process for every step of a home purchase, but buyers rarely see that work. This app gives an agent something with real wow-factor to walk a prospective buyer through at an open house: a deck of chapter cards, from consultation and tours through contract and closing, each opening into market averages, flying checklists of outcomes, and milestone cards the buyer can expand to see exactly what the agent handles for them.",
+        "role": "Contract frontend engineer: presentation app, animation, and interactions.",
+        "stack": ["TypeScript", "React", "Vite", "GSAP", "ScrollTrigger", "Lottie"],
+        "outcomes": [
+          "Five chapters covering the whole journey, from first consultation to closing",
+          "Scroll-scrubbed transitions: card flips, count-ups, scattered outcome checklists, and device mockups",
+          "Expandable milestone cards that break each step into the outcomes the agent delivers",
+          "Presentations are generated per agent, with their own branding and market numbers"
+        ],
+        "media": [
+          {
+            "type": "video",
+            "src": "projects/rayse-presentation/walkthrough.mp4",
+            "poster": "projects/rayse-presentation/walkthrough-poster.webp",
+            "alt": "Scrolling through a chapter: market stats, outcome checklists flying in, a phone timeline, milestone cards, and app mockups",
+            "caption": "One chapter end to end, driven entirely by scroll."
+          },
+          {
+            "type": "image",
+            "src": "projects/rayse-presentation/milestones.webp",
+            "alt": "Row of milestone cards with two expanded into checklists of outcomes",
+            "caption": "Milestone cards expand into the outcomes the agent delivers at each step."
+          },
+          {
+            "type": "image",
+            "src": "projects/rayse-presentation/path-home-phone.webp",
+            "alt": "Phone mockup showing a closing checklist over a photo of a living room, with the line \"Your path home, perfectly clear.\"",
+            "caption": "A phone mockup previews the buyer's closing checklist."
+          },
+          {
+            "type": "image",
+            "src": "projects/rayse-presentation/collab-phones.webp",
+            "alt": "Three phone mockups showing tours, offers, and the agent's activity under the heading \"A new way to work together\"",
+            "caption": "Device mockups of the buyer's side of the Rayse app."
+          },
+          {
+            "type": "image",
+            "src": "projects/rayse-presentation/chapter-cards.webp",
+            "alt": "Two tilted cards, a photo of house keys and a gold card reading \"Contract & Closing\" with the brokerage logo",
+            "caption": "Each chapter opens from a branded card."
+          }
+        ],
+        "links": []
+      }
+    },
+    {
       "id": "ad-search",
       "title": "Ads Search Platform",
       "org": "Reddit",
