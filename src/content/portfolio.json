@@ -123,6 +123,96 @@
       }
     },
     {
+      "id": "wizard-entry",
+      "title": "Wizard on Project Home",
+      "org": "dbt Labs",
+      "period": "2026",
+      "hue": 25,
+      "image": "projects/wizard-entry/cover.webp",
+      "cardImage": "projects/wizard-entry/card.webp",
+      "summary": "A Wizard prompt on dbt's busiest page, shipped in about two weeks and proven with a randomized holdout: 30% more accounts using Wizard.",
+      "highlights": [
+        "Found the opportunity in usage data and wrote the eng plan",
+        "Made the case for a 20% holdout when launch was set to skip the test",
+        "+29.8% more accounts completing a Wizard thread (p ≈ 0.005)"
+      ],
+      "details": {
+        "overview": "After AI went default-on, most developers still hadn't tried dbt Wizard, and every way in was inside Studio or the full-screen app. I found the opportunity in usage data, wrote the eng plan, and built a Wizard prompt for Project Home, the platform's busiest page, in about two weeks. When the launch plan dropped the experiment, I made the case for a holdout. The two-week test showed 30% more accounts using Wizard, mostly ones that had never tried it.",
+        "metrics": [
+          {
+            "value": "+29.8%",
+            "label": "more accounts completing a Wizard thread vs. holdout"
+          },
+          {
+            "value": "~2.2×",
+            "label": "completion among accounts new to Wizard"
+          },
+          {
+            "value": "~3.7×",
+            "label": "first-time full-screen Wizard use"
+          },
+          {
+            "value": "97%",
+            "label": "of clean handoffs completed a Wizard turn"
+          }
+        ],
+        "sections": [
+          {
+            "heading": "The problem",
+            "body": "Five weeks after AI went default-on, 93% of those developers hadn't tried Wizard. Project Home is where three in four weekly users land, but they spend two or three seconds there on the way somewhere else. I sized the audience by having Wizard query our own warehouse. 75% of Project Home viewers had never used Wizard and 97% were on a project where it already worked, including read-only seats that had never been shown it."
+          },
+          {
+            "heading": "The plan",
+            "body": "I picked one direction out of the many ideas in flight and wrote it up as the eng plan. A compact prompt with starter chips lives in a shared package any app can host. Every prompt hands off to the full-screen Wizard with the message already sent, so there's no second chat to maintain. The entry only appears where Wizard will work for that user and project, and adapts for read-only seats and older dbt versions. Funnel events, guardrails, and a primary metric were defined before any code was written."
+          },
+          {
+            "heading": "Making the case for a holdout",
+            "body": "Full-screen Wizard use had grown about 35% on its own since late August, so a before/after comparison would have credited the entry with that growth. When product decided to launch to everyone with no test, I came back with a proposal sized from real traffic. A 20% holdout isn't a slower rollout: 80% of accounts get the entry on launch day and the rest two weeks later, in exchange for the only clean answer. The PM and EM agreed. While setting it up, I caught that splitting on account-ID digits would have put every single-tenant customer in one group, and bucketed on a key that's unique across tenants instead."
+          },
+          {
+            "heading": "Results",
+            "body": "Over two weeks, accounts with the entry completed a full-screen Wizard thread 29.8% more often than the holdout (p ≈ 0.005), beating the 25% lift hypothesized before launch. Accounts new to Wizard drove it, and threads started elsewhere stayed flat, so the entry added usage rather than moving it. Mid-test, telemetry showed some handoffs landing on a locked-access screen. A fix that hid the entry for those accounts took that from about 30% of landings to near zero."
+          }
+        ],
+        "role": "Eng lead and eng plan author: audience research, the shared entry component, handoff, telemetry, and the experiment design and readout.",
+        "stack": ["TypeScript", "React", "Storybook", "LaunchDarkly", "Product analytics", "A/B testing"],
+        "outcomes": [
+          "+29.8% more accounts completing a full-screen Wizard thread than a randomized holdout (p ≈ 0.005)",
+          "Built and shipped behind a flag in about two weeks, dogfooded on internal accounts first",
+          "Rolling out to every eligible customer now that the holdout has ended",
+          "The shared entry package, handoff, and telemetry are the foundation for embeddable Wizard, starting with Catalog",
+          "The success-metrics plan, readout dashboard, and holdout design carry over to the next Wizard surface"
+        ],
+        "media": [
+          {
+            "type": "image",
+            "src": "projects/wizard-entry/entry-dark.webp",
+            "alt": "dbt Wizard prompt box with an agent mode selector and four starter chips",
+            "caption": "The entry at the top of Project Home: a prompt box, the agent mode, and starters picked for the user's seat and mode."
+          },
+          {
+            "type": "image",
+            "src": "projects/wizard-entry/holdout-trend.webp",
+            "alt": "Line chart: share of accounts completing a Wizard thread rises to 14.6% with the entry vs. 11.2% in the holdout over Nov 2 to 16",
+            "caption": "The gap opened on day 2 and held for the full two weeks. Redrawn from the readout dashboard."
+          },
+          {
+            "type": "image",
+            "src": "projects/wizard-entry/lift-breakdown.webp",
+            "alt": "Bar chart comparing the entry and holdout groups: overall completion, accounts new to Wizard, first-time use, and threads started elsewhere",
+            "caption": "The lift came from accounts new to Wizard. Threads started elsewhere stayed flat."
+          },
+          {
+            "type": "image",
+            "src": "projects/wizard-entry/entry-light.webp",
+            "alt": "The Wizard entry in light theme with a pixel-art wizard mascot",
+            "caption": "Light theme, after design-review polish."
+          }
+        ],
+        "links": []
+      }
+    },
+    {
       "id": "insights-agent",
       "title": "Insights Analysis Agent",
       "org": "dbt Labs",

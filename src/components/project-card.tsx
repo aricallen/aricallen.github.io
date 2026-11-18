@@ -52,7 +52,7 @@ export const ProjectCard = ({ project, onOpen }: ProjectCardProps) => {
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <img
-          src={asset(project.image)}
+          src={asset(project.cardImage ?? project.image)}
           alt={`Screenshot of ${project.title}`}
           loading="lazy"
           className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"

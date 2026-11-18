@@ -43,8 +43,23 @@ export type ProjectMedia = {
   caption: string
 }
 
+export type ProjectMetric = {
+  /** Display string, e.g. "+29.8%" or "~2.2×" */
+  value: string
+  label: string
+}
+
+export type ProjectSection = {
+  heading: string
+  body: string
+}
+
 export type ProjectDetails = {
   overview: string
+  /** Headline numbers shown under the summary */
+  metrics?: ProjectMetric[]
+  /** Case-study sections rendered after the overview */
+  sections?: ProjectSection[]
   role: string
   stack: string[]
   outcomes: string[]
@@ -60,6 +75,8 @@ export type Project = {
   /** oklch hue (0-360) used to tint the card's glow and accents */
   hue: number
   image: string
+  /** Optional 16:10 crop for the card face when `image` is too wide to read there */
+  cardImage?: string
   summary: string
   highlights: string[]
   details: ProjectDetails
