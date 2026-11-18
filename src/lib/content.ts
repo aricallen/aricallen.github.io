@@ -75,6 +75,8 @@ export type Project = {
   /** oklch hue (0-360) used to tint the card's glow and accents */
   hue: number
   image: string
+  /** Optional 16:10 crop for the card face when `image` is too wide to read there */
+  cardImage?: string
   summary: string
   highlights: string[]
   details: ProjectDetails

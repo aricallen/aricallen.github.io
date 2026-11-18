@@ -34,6 +34,7 @@ Per project:
 
 - `hue` — 0–360 oklch hue tinting that card's accent, glow, and detail view (pick distinct hues so the grid feels varied)
 - `image` — path under `public/` shown on the card and detail banner
+- `cardImage` (optional) — a 16:10 crop for the card face, when `image` is too wide to read at card size
 - `highlights` — the 3 bullets on the card face
 - `details` — fullscreen view: `overview`, `role`, `stack`, `outcomes`, `media`, optional `links`
 - `details.metrics` (optional) — up to four headline numbers under the summary: `{ value, label }`, with `value` as a display string (`"+29.8%"`, `"~2.2×"`)

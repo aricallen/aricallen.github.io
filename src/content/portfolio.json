@@ -129,6 +129,7 @@
       "period": "2026",
       "hue": 25,
       "image": "projects/wizard-entry/cover.webp",
+      "cardImage": "projects/wizard-entry/card.webp",
       "summary": "A Wizard prompt on dbt's busiest page, shipped in about two weeks and proven with a randomized holdout: 30% more accounts using Wizard.",
       "highlights": [
         "Found the opportunity in usage data and wrote the eng plan",
