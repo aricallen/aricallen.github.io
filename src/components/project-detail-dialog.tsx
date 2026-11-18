@@ -13,7 +13,18 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { ProjectMediaGallery } from '@/components/project-media-gallery'
-import { asset, type Project } from '@/lib/content'
+import { asset, type Project, type ProjectMetric } from '@/lib/content'
+
+const ProjectMetrics = ({ metrics }: { metrics: ProjectMetric[] }) => (
+  <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4">
+    {metrics.map((metric) => (
+      <div key={metric.label} className="flex flex-col-reverse justify-end gap-1">
+        <dt className="text-sm leading-snug text-muted-foreground">{metric.label}</dt>
+        <dd className="font-heading text-3xl font-semibold tracking-tight text-(--accent-c)">{metric.value}</dd>
+      </div>
+    ))}
+  </dl>
+)
 
 type ProjectDetailDialogProps = {
   project: Project | null
@@ -59,6 +70,8 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
               </DialogTitle>
               <DialogDescription className="mt-3 max-w-2xl text-base">{project.summary}</DialogDescription>
 
+              {project.details.metrics && <ProjectMetrics metrics={project.details.metrics} />}
+
               <Separator className="my-8" />
 
               <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr]">
@@ -72,6 +85,17 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
                     </h3>
                     <p className="leading-relaxed">{project.details.overview}</p>
                   </section>
+                  {project.details.sections?.map((section, index) => (
+                    <section key={section.heading} aria-labelledby={`${project.id}-section-${index}`}>
+                      <h3
+                        id={`${project.id}-section-${index}`}
+                        className="mb-3 font-mono text-sm tracking-widest text-muted-foreground uppercase"
+                      >
+                        {section.heading}
+                      </h3>
+                      <p className="leading-relaxed">{section.body}</p>
+                    </section>
+                  ))}
                   <section aria-labelledby={`${project.id}-outcomes`}>
                     <h3
                       id={`${project.id}-outcomes`}
@@ -90,7 +114,7 @@ export const ProjectDetailDialog = ({ project, open, onOpenChange }: ProjectDeta
                   </section>
                 </div>
 
-                <aside className="flex h-fit flex-col gap-6 rounded-xl bg-card p-5 ring-1 ring-foreground/10">
+                <aside className="flex h-fit flex-col gap-6 lg:sticky lg:top-8 rounded-xl bg-card p-5 ring-1 ring-foreground/10">
                   <section aria-labelledby={`${project.id}-role`}>
                     <h3
                       id={`${project.id}-role`}

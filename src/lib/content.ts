@@ -43,8 +43,23 @@ export type ProjectMedia = {
   caption: string
 }
 
+export type ProjectMetric = {
+  /** Display string, e.g. "+29.8%" or "~2.2×" */
+  value: string
+  label: string
+}
+
+export type ProjectSection = {
+  heading: string
+  body: string
+}
+
 export type ProjectDetails = {
   overview: string
+  /** Headline numbers shown under the summary */
+  metrics?: ProjectMetric[]
+  /** Case-study sections rendered after the overview */
+  sections?: ProjectSection[]
   role: string
   stack: string[]
   outcomes: string[]
